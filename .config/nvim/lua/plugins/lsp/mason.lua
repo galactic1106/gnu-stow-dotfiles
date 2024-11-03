@@ -49,7 +49,6 @@ return {
                 "flake8",
                 -- "pylint", -- python linter
                 "eslint_d", -- js linter
-                "java-language-server",
                 "jdtls",
                 "checkstyle",
                 "clang-format",

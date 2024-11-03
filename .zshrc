@@ -74,7 +74,7 @@ alias ls="eza --icons=always --color=always"
 alias ll='eza -alF --icons=always --color=always'
 alias la='eza -A --icons=always --color=always'
 alias l='eza -GF --icons=always --color=always'
-
+alias vi='nvim'
 
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
