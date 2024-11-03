@@ -1,11 +1,11 @@
 general.live_config_reload = true
 
 general.import = [
-    "~/.config/alacritty/themes/themes/coolnight.toml"
+    "~/.config/alacritty/my_themes/coolnight.toml"
 ]
 
 [cursor]
-style.shape = "Underline"
+style.shape = "underline"
 
 [env]
 TERM = "xterm-256color"
