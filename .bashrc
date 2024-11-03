@@ -116,12 +116,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias 'vi'='nvim'
-# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-
+# eza aliases
+# alias ls="eza --icons=always --color=always"
+# alias ll='eza -alF --icons=always --color=always'
+# alias la='eza -A --icons=always --color=always'
+# alias l='eza -GF --icons=always --color=always'
 
