@@ -87,3 +87,10 @@ eval "$(zoxide init --cmd cd zsh)"
 
 # Created by `pipx` on 2024-11-04 22:41:35
 export PATH="$PATH:/home/galactic1106/.local/bin"
+
+# bun completions
+[ -s "/home/galactic1106/.bun/_bun" ] && source "/home/galactic1106/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
