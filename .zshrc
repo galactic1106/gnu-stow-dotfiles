@@ -70,8 +70,8 @@ setopt hist_find_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls="eza --icons=always --color=always"
@@ -79,7 +79,8 @@ alias ll='eza -alF --icons=always --color=always'
 alias la='eza -A --icons=always --color=always'
 alias l='eza -GF --icons=always --color=always'
 alias vi='nvim'
-
+alias grep="/usr/bin/grep $GREP_OPTIONS"
+unset GREP_OPTIONS
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)" 
