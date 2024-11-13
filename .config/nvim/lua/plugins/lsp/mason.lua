@@ -58,7 +58,8 @@ return {
                 "cpptools",
                 "cpplint",
                 "easy-coding-standard",
-                "sql-formatter",
+                -- "sql-formatter",
+                "pretty-php",
             },
         })
     end,
