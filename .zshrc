@@ -50,8 +50,13 @@ zinit cdreplay -q
 
 
 # Keybinds
-bindkey '^b' history-search-backward
-bindkey '^n' history-search-forward
+# bindkey '^b' history-search-backward
+# bindkey '^n' history-search-forward
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey ";5~" delete-word
+bindkey "^H" backward-delete-word
+
 
 # History
 HISTFILE=~/.histfile
@@ -101,6 +106,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export MANROFFOPT="-P -c"
+
+export EDITOR=nvim
 
 # set up yazi
 function y() {
