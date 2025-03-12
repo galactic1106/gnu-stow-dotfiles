@@ -1,11 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
-
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -18,19 +10,13 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Add in Powerlevel10k
-# zinit ice depth=1; zinit light romkatv/powerlevel10k
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # initialize oh-my-posh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
+# zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
 # Add in snippets
@@ -48,10 +34,7 @@ autoload -Uz compinit && compinit
 
 zinit cdreplay -q
 
-
 # Keybinds
-# bindkey '^b' history-search-backward
-# bindkey '^n' history-search-forward
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey ";5~" delete-word
@@ -72,11 +55,16 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Completion styling
+# setopt globdots # show  hidden files by default
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 # zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':completion:*' special-dirs true # force . and .. to show in cmp menu
+# zstyle ':completion:*' file-list true # more detailed list
+zstyle ':completion:*' squeeze-slashes false # explicit disable to allow /*/ expansion
+
 
 # Aliases
 alias ls="eza --icons=always --color=always"
@@ -86,9 +74,7 @@ alias l='eza -GF --icons=always --color=always'
 alias vi='nvim'
 alias grep="/usr/bin/grep $GREP_OPTIONS"
 alias mysql="mariadb"
-# alias gdb="gdb -x ~/.pwndbg/pwndbg/gdbinit.py"
 alias code="code --enable-features=UseOzonePlatform --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto"
-unset GREP_OPTIONS
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
 # eval "$(zoxide init --cmd cd zsh)" 
@@ -97,13 +83,14 @@ eval "$(fzf --zsh)"
 # Created by `pipx` on 2024-11-04 22:41:35
 export PATH="$PATH:/home/galactic1106/.local/bin"
 
+
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "/home/galactic1106/.bun/_bun"
-
-# bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+
+# man highlighting
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export MANROFFOPT="-P -c"
 

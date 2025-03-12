@@ -6,5 +6,20 @@ font-family="Hack Nerd Font Mono"
 theme = coolnight
 
 cursor-style = underline 
-cursor-style-blink = false
+cursor-style-blink = true 
 shell-integration-features = no-cursor
+mouse-hide-while-typing = true
+
+background-opacity=0.85
+
+keybind = ctrl+s>s=new_split:down
+keybind = ctrl+s>w=new_split:up
+keybind = ctrl+s>d=new_split:right
+keybind = ctrl+s>a=new_split:left
+
+
+keybind = ctrl+s>down=goto_split:down
+keybind = ctrl+s>up=goto_split:up
+keybind = ctrl+s>right=goto_split:right
+keybind = ctrl+s>left=goto_split:left
+

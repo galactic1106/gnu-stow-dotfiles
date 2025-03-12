@@ -20,7 +20,3 @@ cursor-color = #47FF9C
 cursor-text = #1A1B26
 selection-background = #283457
 selection-foreground = #C0CAF5
-
-cursor-style = underline 
-cursor-style-blink = false
-shell-integration-features = no-cursor
