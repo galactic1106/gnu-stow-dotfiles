@@ -74,7 +74,6 @@ alias l='eza -GF --icons=always --color=always'
 alias vi='nvim'
 alias grep="/usr/bin/grep $GREP_OPTIONS"
 alias mysql="mariadb"
-alias code="code --enable-features=UseOzonePlatform --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto"
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
 # eval "$(zoxide init --cmd cd zsh)" 
@@ -105,5 +104,8 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+# add composer binaries to path
+export PATH=$PATH:~/.config/composer/vendor/bin
 
 # source "$HOME/olicyber_venv/bin/activate"

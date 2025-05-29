@@ -1,2 +1,8 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
+vim.cmd("set expandtab")
+vim.cmd("set tabstop=3")
+vim.cmd("set softtabstop=3")
+vim.cmd("set shiftwidth=3")
+vim.cmd("set number relativenumber")
+vim.cmd("set nu rnu")
+vim.cmd("set nowrap")
 require("config.lazy")
