@@ -23,3 +23,11 @@ keybind = ctrl+s>up=goto_split:up
 keybind = ctrl+s>right=goto_split:right
 keybind = ctrl+s>left=goto_split:left
 
+keybind = ctrl+s>j=goto_split:down
+keybind = ctrl+s>k=goto_split:up
+keybind = ctrl+s>l=goto_split:right
+keybind = ctrl+s>h=goto_split:left
+
+keybind = ctrl+s>x=close_surface
+
+keybind = ctrl+backspace=text:\x1b\x7f

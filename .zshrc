@@ -35,11 +35,14 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 # Keybinds
+bindkey "^l" forward-word
+bindkey "^h" backward-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-bindkey ";5~" delete-word
-bindkey "^H" backward-delete-word
-
+bindkey "^[[3;5~" kill-word
+bindkey '^[^?' backward-kill-word
+bindkey "^P" up-history
+bindkey "^N" down-history
 
 # History
 HISTFILE=~/.histfile
