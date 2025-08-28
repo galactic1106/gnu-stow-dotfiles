@@ -21,5 +21,5 @@ This directory contains my dotfiles
 ## Video tutorial link
 
 '''
-https://youtu.be/y6XCebnB9gs?si=lJHEZbVs_25Wd8Xm
+<https://youtu.be/y6XCebnB9gs?si=lJHEZbVs_25Wd8Xm>
 '''

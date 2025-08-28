@@ -1,0 +1,9 @@
+#!/bin/sh
+
+alias ls="eza --icons=always --color=always"
+alias ll='eza -alF --icons=always --color=always'
+alias la='eza -A --icons=always --color=always'
+alias l='eza -GF --icons=always --color=always'
+alias vi='nvim'
+alias vim='nvim'
+alias mysql="mariadb"

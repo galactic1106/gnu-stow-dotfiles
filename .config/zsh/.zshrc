@@ -1,17 +1,25 @@
+# source global shell alias & variables files
+[ -f "$XDG_CONFIG_HOME/shell/alias" ] && source "$XDG_CONFIG_HOME/shell/alias"
+[ -f "$XDG_CONFIG_HOME/shell/vars" ] && source "$XDG_CONFIG_HOME/shell/vars"
+
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
    mkdir -p "$(dirname $ZINIT_HOME)"
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
-
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
 # initialize oh-my-posh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
+
+# load modules
+zmodload zsh/complist
+autoload -U compinit && compinit
+autoload -U colors && colors
+autoload -U tetris # main attraction of zsh, obviously
 
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -28,10 +36,6 @@ zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
-
-# Load completions
-autoload -Uz compinit && compinit
-
 zinit cdreplay -q
 
 # Keybinds
@@ -45,45 +49,46 @@ bindkey "^P" up-history
 bindkey "^N" down-history
 
 # History
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000000
+SAVEHIST=1000000
+HISTFILE="$XDG_CACHE_HOME/zsh_history" # move histfile to cache
+HISTCONTROL=ignoreboth # consecutive duplicates & commands starting with space are not saved
 HISTDUP=erase
 setopt appendhistory
 setopt sharehistory
+setopt inc_append_history
 setopt hist_ignore_space
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+
+setopt autocd # type a dir to cd
+setopt auto_param_slash # when a dir is completed, add a / instead of a trailing space
+# setopt no_case_glob no_case_match # make cmp case insensitive
+setopt extended_glob # match ~ # ^
+setopt interactive_comments # allow comments in shell
+unsetopt prompt_sp # don't autoclean blanklines
+
+
+
 # Completion styling
 # setopt globdots # show  hidden files by default
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# zstyle ':completion:*' file-list true # more detailed list
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' special-dirs true # force . and .. to show in cmp menu
+# zstyle ':completion:*' squeeze-slashes false # explicit disable to allow /*/ expansion
 zstyle ':completion:*' menu no
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 # zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-zstyle ':completion:*' special-dirs true # force . and .. to show in cmp menu
-# zstyle ':completion:*' file-list true # more detailed list
-zstyle ':completion:*' squeeze-slashes false # explicit disable to allow /*/ expansion
 
-
-# Aliases
-alias ls="eza --icons=always --color=always"
-alias ll='eza -alF --icons=always --color=always'
-alias la='eza -A --icons=always --color=always'
-alias l='eza -GF --icons=always --color=always'
-alias vi='nvim'
-alias grep="/usr/bin/grep $GREP_OPTIONS"
-alias mysql="mariadb"
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
 # eval "$(zoxide init --cmd cd zsh)" 
 
-
-# Created by `pipx` on 2024-11-04 22:41:35
-export PATH="$PATH:/home/galactic1106/.local/bin"
 
 
 # bun completions
@@ -91,12 +96,6 @@ export PATH="$PATH:/home/galactic1106/.local/bin"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-
-# man highlighting
-export MANPAGER="less -R --use-color -Dd+r -Du+b"
-export MANROFFOPT="-P -c"
-
-export EDITOR=nvim
 
 # set up yazi
 function y() {
@@ -108,7 +107,8 @@ function y() {
 	rm -f -- "$tmp"
 }
 
+# Created by `pipx` on 2024-11-04 22:41:35
+export PATH="$PATH:/home/galactic1106/.local/bin"
+
 # add composer binaries to path
 export PATH=$PATH:~/.config/composer/vendor/bin
-
-# source "$HOME/olicyber_venv/bin/activate"
