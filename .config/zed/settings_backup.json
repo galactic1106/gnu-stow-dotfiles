@@ -1,0 +1,97 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "icon_theme": "Catppuccin Mocha",
+  "base_keymap": "VSCode",
+  "hide_mouse": "on_typing_and_movement",
+  "vim_mode": true,
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Ayu Dark"
+  },
+
+  "relative_line_numbers": true,
+  "tab_bar": {
+    "show": true
+  },
+
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "indent_aware",
+    "background_coloring": "disabled"
+  },
+
+  "project_panel": { "dock": "left" },
+
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000
+    }
+  },
+  "format_on_save": "on",
+
+  "show_edit_predictions": false,
+  "edit_predictions": {
+    "mode": "subtle"
+  },
+  "agent": {
+    "default_profile": "ask",
+    "version": "2",
+    "default_model": {
+      "provider": "google",
+      "model": "gemini-2.5-pro"
+    },
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "o4-mini"
+    }
+  },
+  "version": { "version": "2" },
+  "features": { "edit_prediction_provider": "supermaven" },
+
+  "languages": {
+    "prettier": {
+      "allowed": true,
+      "tabWidth": 4,
+      "braceStyle": "1tbs"
+    },
+    "PHP": {
+      "language_servers": [
+        "intelephense",
+        "!phpactor",
+        //"!tailwindcss-language-server",
+        "..."
+      ],
+      "formatter": "prettier",
+      "prettier": {
+        "allowed": true,
+        "plugins": ["@prettier/plugin-php"],
+        "parser": "php",
+        "phpVersion": "8.0",
+        "experimentalTernaries": true
+      }
+    },
+
+    "Blade": {
+      "formatter": "prettier",
+      "prettier": {
+        "allowed": true,
+        "plugins": ["@shufo/prettier-plugin-blade"],
+        "parser": "blade"
+      }
+    }
+  },
+  "file_finder": {
+    "Blade": ["*.blade.php"],
+    "PHP": ["*.php", "*.blade.php"]
+  }
+}

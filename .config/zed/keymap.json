@@ -1,0 +1,51 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  { "bindings": { "ctrl-alt-l": null } },
+  {
+    "context": "Workspace || Editor",
+    "bindings": {
+      "ctrl-alt-a": "agent::ToggleFocus",
+      "ctrl-alt-t": "terminal_panel::ToggleFocus",
+      "ctrl-alt-e": "project_panel::ToggleFocus",
+      "ctrl-alt-g": "git_panel::ToggleFocus",
+      "ctrl-alt-h": "workspace::ToggleLeftDock",
+      "ctrl-alt-j": "workspace::ToggleBottomDock",
+      "ctrl-alt-l": "workspace::ToggleRightDock",
+      "ctrl-alt-f": "editor::Format"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-up": "editor::MoveLineUp",
+      "alt-down": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp",
+      "alt-j": "editor::MoveLineDown"
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-s": ["vim::PushAddSurrounds", {}]
+    }
+  },
+  {
+    "context": "vim_mode==insert",
+    "bindings": {
+      "j j": ["workspace::SendKeystrokes", "escape"]
+    }
+  },
+  {
+    "context": "!Terminal && (Workspace || (Editor && vim_mode == normal))",
+    "bindings": {
+      "space f f": "file_finder::Toggle",
+      "space f g": "pane::DeploySearch"
+    }
+  }
+]
