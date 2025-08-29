@@ -7,6 +7,15 @@ This directory contains my dotfiles
 - git
 - stow
 
+## Other requirements
+
+- zsh
+- fzf
+- zoxide
+- eza
+- yazi
+- ghostty / alacritty
+
 ## Installation
 
 - clone the remote repository
@@ -17,6 +26,8 @@ This directory contains my dotfiles
   $ cd dotfiles
   $ stow .
   '''
+
+## Logout and login to source .zprofile
 
 ## Video tutorial link
 
