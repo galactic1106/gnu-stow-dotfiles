@@ -17,9 +17,9 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 
 # load modules
 zmodload zsh/complist
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit
 autoload -U colors && colors
-autoload -U tetris # main attraction of zsh, obviously
+# autoload -U tetris # main attraction of zsh, obviously
 
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -54,40 +54,55 @@ SAVEHIST=1000000
 HISTFILE="$XDG_CACHE_HOME/zsh_history" # move histfile to cache
 HISTCONTROL=ignoreboth # consecutive duplicates & commands starting with space are not saved
 HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-setopt inc_append_history
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
+setopt hist_expire_dups_first # expire duplicate entries first when trimming history
+setopt hist_find_no_dups # don't display duplicate entries in history
+setopt hist_ignore_space # ignore commands starting with space
 setopt hist_ignore_dups
-setopt hist_find_no_dups
+setopt hist_ignore_all_dups # remove older duplicate entries from history
+setopt hist_reduce_blanks # remove superfluous blanks from history items
+setopt hist_save_no_dups # don't save duplicate entries in history
+setopt hist_verify # don't execute immediately upon history expansion
+setopt inc_append_history # save history entries as soon as they are entered
+setopt share_history # share history between different instances
 
 
 setopt autocd # type a dir to cd
 setopt auto_param_slash # when a dir is completed, add a / instead of a trailing space
-# setopt no_case_glob no_case_match # make cmp case insensitive
+setopt no_case_glob no_case_match # make cmp case insensitive
 setopt extended_glob # match ~ # ^
 setopt interactive_comments # allow comments in shell
 unsetopt prompt_sp # don't autoclean blanklines
 
 
 
-# Completion styling
-# setopt globdots # show  hidden files by default
-# zstyle ':completion:*' file-list true # more detailed list
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' special-dirs true # force . and .. to show in cmp menu
-# zstyle ':completion:*' squeeze-slashes false # explicit disable to allow /*/ expansion
-zstyle ':completion:*' menu no
 
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-# zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+# Completion styling
+# zstyle ':completion:*' file-list true # more detailed list
+setopt MENU_COMPLETE
+setopt globdots # show  hidden files by default
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Za-z}' # case-insensitive completion
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # colorize filenames
+zstyle ':completion:*' menu no # disable menu completion for fzf-tab
+zstyle ':completion:*' special-dirs true # force . and .. to show in cmp menu
+zstyle ':completion:*' squeeze-slashes false # explicit disable to allow /*/ expansion
+
+# completions with ls
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath' # preview directory contents with cd
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath' # preview directory contents with zoxide
+
+# completions with eza
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --icons=always --color=always --oneline $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --icons=always --color=always --oneline $realpath'
+
+zstyle ':fzf-tab:*' fzf-flags --ignore-case
+# zstyle ':fzf-tab:*' use-fzf-default-opts yes # use FZF_DEFAULT_OPTS for fzf-tab
+zstyle ':fzf-tab:*' switch-group '<' '>'
 
 # Set up fzf key bindings and fuzzy completion
-eval "$(fzf --zsh)"
-# eval "$(zoxide init --cmd cd zsh)" 
+if [[ -x $(command -v fzf) ]]; then eval "$(fzf --zsh)"; fi
+
+# initialize zoxide
+eval "$(zoxide init --cmd cd zsh)"
 
 
 
