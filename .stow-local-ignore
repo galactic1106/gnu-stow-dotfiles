@@ -1,8 +1,7 @@
 \.git
 \.gitmodules
 \.config/zsh/.zcompdump
-\README.md
-
+\.config\tmux\plugins
 
 ^/README.*
 ^/LICENSE.*
