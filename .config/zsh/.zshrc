@@ -19,6 +19,12 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 zmodload zsh/complist
 autoload -Uz compinit && compinit
 autoload -U colors && colors
+
+# edit command line with vim
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^Xe' edit-command-line
+bindkey '^X^E' edit-command-line
 # autoload -U tetris # main attraction of zsh, obviously
 
 # Add in zsh plugins
@@ -39,12 +45,11 @@ zinit snippet OMZP::command-not-found
 zinit cdreplay -q
 
 # Keybinds
-bindkey "^l" forward-word
-bindkey "^h" backward-word
+bindkey -e  #set default keybinds i think?
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-bindkey "^[[3;5~" kill-word
-bindkey '^[^?' backward-kill-word
+bindkey -M emacs '^H' backward-kill-word
+bindkey -M emacs '^[[3;5~' kill-word
 bindkey "^P" up-history
 bindkey "^N" down-history
 
@@ -96,7 +101,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --icons=always --color=
 
 zstyle ':fzf-tab:*' fzf-flags --ignore-case
 # zstyle ':fzf-tab:*' use-fzf-default-opts yes # use FZF_DEFAULT_OPTS for fzf-tab
-zstyle ':fzf-tab:*' switch-group '<' '>'
+# zstyle ':fzf-tab:*' switch-group '<' '>'
 
 # Set up fzf key bindings and fuzzy completion
 if [[ -x $(command -v fzf) ]]; then eval "$(fzf --zsh)"; fi
@@ -107,9 +112,9 @@ eval "$(zoxide init --cmd cd zsh)"
 
 
 # bun completions
-[ -s "$HOME/.bun/_bun" ] && source "/home/galactic1106/.bun/_bun"
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# [ -s "$HOME/.bun/_bun" ] && source "/home/galactic1106/.bun/_bun"
+# export BUN_INSTALL="$HOME/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
 
 
 # set up yazi

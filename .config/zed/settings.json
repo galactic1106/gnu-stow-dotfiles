@@ -34,7 +34,7 @@
 
   "autosave": {
     "after_delay": {
-      "milliseconds": 5000
+      "milliseconds": 3000
     }
   },
   "format_on_save": "on",
@@ -54,33 +54,30 @@
       "model": "o4-mini"
     }
   },
-  "version": { "version": "2" },
   "features": { "edit_prediction_provider": "supermaven" },
 
   "languages": {
-    "prettier": {
-      "allowed": true,
-      "tabWidth": 4,
-      "braceStyle": "1tbs"
-    },
     "PHP": {
-      "language_servers": [
-        "phpactor",
-        "intelephense"
-        //"!tailwindcss-language-server",
-        //"..."
-      ],
-      "formatter": "prettier",
-      "prettier": {
-        "allowed": true,
-        "plugins": ["@prettier/plugin-php"],
-        "parser": "php",
-        "phpVersion": "8.0",
-        "experimentalTernaries": true
+      "hard_tabs": true,
+      "tab_size": 4,
+      "language_servers": ["phpactor", "!intelephense"],
+      "formatter": {
+        // "code_actions": {
+        //   "source.fixAll.phpactor.phpCsFixer": true
+        // },
+        "external": {
+          "command": "bash",
+          "arguments": [
+            "-c",
+            "cat > {buffer_path} && ./vendor/bin/pint --quiet {buffer_path} && cat {buffer_path}"
+          ]
+        }
       }
     },
 
     "Blade": {
+      "hard_tabs": true,
+      "tab_size": 4,
       "formatter": "prettier",
       "prettier": {
         "allowed": true,

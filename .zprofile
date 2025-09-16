@@ -7,6 +7,7 @@ export EDITOR="nvim"
 export TERM="st"
 export TERMINAL="st"
 export BROWSER="firefox"
+export VISUAL="nvim"
 # export DISPLAY=:0 # useful for some scripts
 
 # follow XDG base dir specification
