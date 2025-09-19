@@ -8,3 +8,4 @@ alias vi='nvim'
 alias vim='nvim'
 alias mysql="mariadb"
 alias grep='grep --color=auto'
+alias tmux='tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf'

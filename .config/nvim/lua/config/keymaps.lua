@@ -1,14 +1,15 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
--- use `vim.keymap.set`
+vim.keymap.set('n', '<leader>o', ':update<CR>:source<CR>')
+vim.keymap.set('n', '<leader>q', ':quit<CR>')
+vim.keymap.set('n', '<leader>w', function()
+    vim.lsp.buf.format()
+    vim.cmd('w')
+end)
 
-vim.keymap.set("i", "jj", "<esc>", { desc = "Exit insert mode" })
+vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
--- vim-tmux-navigator keymaps
-vim.keymap.set("n", "<C-h>", "<Cmd>NvimTmuxNavigateLeft<CR>")
-vim.keymap.set("n", "<C-j>", "<Cmd>NvimTmuxNavigateDown<CR>")
-vim.keymap.set("n", "<C-k>", "<Cmd>NvimTmuxNavigateUp<CR>")
-vim.keymap.set("n", "<C-l>", "<Cmd>NvimTmuxNavigateRight<CR>")
--- vim.keymap.set("n", "<C-\\>", "<Cmd>NvimTmuxNavigateLastActive<CR>")
--- vim.keymap.set("n", "<C-Space>", "<Cmd>NvimTmuxNavigateNext<CR>")
+vim.keymap.set('n', '<leader>ff', ':Pick files<CR>')
+vim.keymap.set('n', '<leader>fh', ':Pick help<CR>')
+
+vim.keymap.set('n', '<leader>e', ':Oil<CR>')
+
+vim.keymap.set('i','jj', '<esc>')
