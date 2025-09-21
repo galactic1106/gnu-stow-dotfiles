@@ -11,7 +11,7 @@ TERM = "xterm-256color"
 [window]
 decorations = "Buttonless"
 dynamic_padding = false
-opacity = 0.8
+opacity = 0.9
 blur = true
 option_as_alt = "Both"
 dynamic_title = true

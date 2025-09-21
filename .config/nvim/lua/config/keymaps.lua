@@ -21,3 +21,11 @@ vim.keymap.set("n", "<leader>e", function()
 end)
 
 vim.keymap.set('i', 'jj', '<esc>')
+
+vim.keymap.set('n', '<leader>tf', ':Neotree toggle source=filesystem<cr>')
+vim.keymap.set('n', '<leader>tg', ':Neotree toggle source=git_status<cr>')
+vim.keymap.set('n', '<leader>tb', ':Neotree toggle source=buffers<cr>')
+vim.keymap.set('n', '<leader>tt', ':Neotree toggle<cr>')
+
+vim.keymap.set('n', '<C-w>v', ':set splitright<CR>:sp<CR>')
+vim.keymap.set('n', '<C-w>h', ':set splitbelow<CR>:sp<CR>')
