@@ -1,7 +1,6 @@
 vim.pack.add({
+    { src = "https://github.com/MunifTanjim/nui.nvim" },
     { src = "https://github.com/adibhanna/laravel.nvim" },
-    "https://github.com/nvim-lua/plenary.nvim",
-    "https://github.com/MunifTanjim/nui.nvim",
 })
 
 require("laravel").setup({

@@ -1,6 +1,6 @@
 vim.pack.add({
-    { src = "https://github.com/nvim-telescope/telescope.nvim" },
-    { src = "https://github.com/nvim-lua/plenary.nvim" }
+    { src = "https://github.com/nvim-lua/plenary.nvim" },
+    { src = "https://github.com/nvim-telescope/telescope.nvim" }
 })
 
 require('telescope').setup {
@@ -24,6 +24,22 @@ require('telescope').setup {
         -- }
         -- Now the picker_config_key will be applied every time you call this
         -- builtin picker
+
+        find_files = {
+            hidden = true
+        },
+        live_grep = {
+            hidden = true
+        },
+        help_tags = {
+            hidden = true
+        },
+        commands = {
+            hidden = true
+        },
+        keymaps = {
+            hidden = true
+        },
     },
     extensions = {
         -- Your extension configuration goes here:
