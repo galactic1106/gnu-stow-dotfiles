@@ -9,3 +9,12 @@ vim.pack.add({
     -- optional, but recommended
     "https://github.com/nvim-tree/nvim-web-devicons",
 })
+
+require("neo-tree").setup({
+
+    filesystem = {
+        hijack_netrw_behavior = "disabled",
+        -- "open_default",
+        -- "open_current",
+    }
+})

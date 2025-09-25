@@ -39,6 +39,12 @@ require("blink.cmp").setup({
     sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
     },
-    fuzzy = { implementation = "prefer_rust" },
+    fuzzy = {
+        implementation = "prefer_rust",
+        prebuilt_binaries = {
+            download = true,
+            force_version = "1.*"
+        }
+    },
     opts_extend = { "sources.default" }
 })
