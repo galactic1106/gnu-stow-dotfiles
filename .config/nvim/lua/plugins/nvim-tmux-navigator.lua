@@ -1,4 +1,4 @@
-vim.pack.add({ { src = "https://github.com/alexghergh/nvim-tmux-navigation" } })
+vim.pack.add({ { src = "https://github.com/alexghergh/nvim-tmux-navigation", name = "nvim-tmux-navigation" } })
 
 require('nvim-tmux-navigation').setup({
     disable_when_zoomed = true, -- defaults to false

@@ -33,6 +33,8 @@ vim.keymap.set("n", "<leader>lc", ":Composer<cr>", { desc = "Composer" })
 vim.keymap.set("n", "<leader>lr", ":LaravelRoute<cr>", { desc = "Laravel Routes" })
 vim.keymap.set("n", "<leader>lm", ":LaravelMake<cr>", { desc = "Laravel Make" })
 
+
 vim.keymap.set({ "n", "x" }, "<leader>ca", function()
     require("tiny-code-action").code_action()
 end, { noremap = true, silent = true })
+

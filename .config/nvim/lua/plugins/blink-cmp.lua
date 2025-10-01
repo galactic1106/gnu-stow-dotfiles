@@ -1,4 +1,4 @@
-vim.pack.add({ { src = 'https://github.com/Saghen/blink.cmp' } })
+vim.pack.add({ { src = 'https://github.com/Saghen/blink.cmp', name = "blink" } })
 
 
 require("blink.cmp").setup({
@@ -19,6 +19,8 @@ require("blink.cmp").setup({
     },
     completion = {
         menu = {
+            auto_show = true,
+            auto_show_delay_ms = 250,
             draw = {
                 columns = { { 'item_idx' }, { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
                 components = {
@@ -30,7 +32,8 @@ require("blink.cmp").setup({
             }
         },
         ghost_text = {
-            enabled = true
+            enabled = true,
+            show_with_menu=false,
         },
         documentation = {
             auto_show = false
@@ -46,8 +49,6 @@ require("blink.cmp").setup({
             force_version = "1.*"
         }
     },
-    opts_extend = { "sources.default" },
-
     -- Experimental signature help support
     signature = {
         enabled = true,

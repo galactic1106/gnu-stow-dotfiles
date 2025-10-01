@@ -1,4 +1,4 @@
-vim.pack.add({ { src = "https://github.com/sphamba/smear-cursor.nvim" } })
+vim.pack.add({ { src = "https://github.com/sphamba/smear-cursor.nvim", name = "smear-cursor" } })
 
 require('smear_cursor').setup({
     -- Smear cursor when switching buffers or windows.

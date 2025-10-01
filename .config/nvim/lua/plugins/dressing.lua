@@ -1,4 +1,4 @@
-vim.pack.add({ { src = "https://github.com/stevearc/dressing.nvim" } })
+vim.pack.add({ { src = "https://github.com/stevearc/dressing.nvim", name = "dressing" } })
 
 require("dressing").setup({
     input = {

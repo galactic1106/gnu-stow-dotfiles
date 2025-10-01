@@ -1,6 +1,6 @@
 vim.pack.add({
-    { src = "https://github.com/nvim-lua/plenary.nvim" },
-    { src = "https://github.com/mikavilpas/yazi.nvim" },
+    { src = "https://github.com/nvim-lua/plenary.nvim", name = "plenary" },
+    { src = "https://github.com/mikavilpas/yazi.nvim",  name = "yazi" },
 })
 
 vim.g.loaded_netrwPlugin = 1

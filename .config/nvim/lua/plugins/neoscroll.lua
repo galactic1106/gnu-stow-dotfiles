@@ -1,11 +1,11 @@
-vim.pack.add({ { src = "https://github.com/karb94/neoscroll.nvim" } })
+vim.pack.add({ { src = "https://github.com/karb94/neoscroll.nvim", name = "neoscroll" } })
 
 require('neoscroll').setup({
     mappings = { -- Keys to be mapped to their corresponding default scrolling animation
         '<C-u>', '<C-d>',
-        '<C-b>', '<C-f>',
-        '<C-y>', '<C-e>',
-        'zt', 'zz', 'zb',
+        -- '<C-b>', '<C-f>',
+        -- '<C-y>', '<C-e>',
+        -- 'zt', 'zz', 'zb',
     },
     hide_cursor = false,          -- Hide cursor while scrolling
     stop_eof = true,              -- Stop at <EOF> when scrolling downwards

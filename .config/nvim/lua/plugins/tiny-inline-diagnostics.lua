@@ -1,4 +1,4 @@
-vim.pack.add({ { src = "https://github.com/rachartier/tiny-inline-diagnostic.nvim" } })
+vim.pack.add({ { src = "https://github.com/rachartier/tiny-inline-diagnostic.nvim", name = "tiny-inline-diagnostic" } })
 
 require("tiny-inline-diagnostic").setup({
     -- Style preset for diagnostic messages

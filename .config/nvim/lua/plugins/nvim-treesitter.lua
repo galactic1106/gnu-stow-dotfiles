@@ -1,4 +1,4 @@
-vim.pack.add({ { src = "https://github.com/nvim-treesitter/nvim-treesitter" } })
+vim.pack.add({ { src = "https://github.com/nvim-treesitter/nvim-treesitter", name = "nvim-treesitter" } })
 
 require('nvim-treesitter.configs').setup({
     -- A list of parser names, or "all" (the listed parsers MUST always be installed)
