@@ -4,4 +4,7 @@ vim.pack.add({
     { src = "https://github.com/mason-org/mason-lspconfig.nvim", name = "mason-lspconfig" },
 })
 
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = {
+    }
+})

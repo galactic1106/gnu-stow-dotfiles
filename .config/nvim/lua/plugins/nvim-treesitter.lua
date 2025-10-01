@@ -2,7 +2,7 @@ vim.pack.add({ { src = "https://github.com/nvim-treesitter/nvim-treesitter", nam
 
 require('nvim-treesitter.configs').setup({
     -- A list of parser names, or "all" (the listed parsers MUST always be installed)
-    ensure_installed = {},
+    ensure_installed = { "scss", "css", "lua", "php", "blade", "typescript", "javascript", "c", "vue", "java", "cpp", "html" },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -40,4 +40,22 @@ require('nvim-treesitter.configs').setup({
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
     },
+})
+
+-- update Ts on vim.pack.update()
+vim.api.nvim_create_autocmd('PackChanged', {
+    desc = 'Handle nvim-treesitter updates',
+    group = vim.api.nvim_create_augroup('nvim-treesitter-pack-changed-update-handler', { clear = true }),
+    callback = function(event)
+        if event.data.kind == 'update' and event.data.spec.name == 'nvim-treesitter' then
+            vim.notify('nvim-treesitter updated, running TSUpdate...', vim.log.levels.INFO)
+            ---@diagnostic disable-next-line: param-type-mismatch
+            local ok = pcall(vim.cmd, 'TSUpdate')
+            if ok then
+                vim.notify('TSUpdate completed successfully!', vim.log.levels.INFO)
+            else
+                vim.notify('TSUpdate command not available yet, skipping', vim.log.levels.WARN)
+            end
+        end
+    end,
 })
