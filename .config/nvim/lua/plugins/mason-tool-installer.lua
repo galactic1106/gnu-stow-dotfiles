@@ -8,11 +8,11 @@ require('mason-tool-installer').setup({
         "lua_ls",
         "clangd", "cpptools", "cpplint", "clang-format",
         "intelephense", "laravel-ls", "phpactor", "php-debug-adapter", "phpcs", "phpstan", "pint",
-        "html-lsp", "markuplint", "prettier",
-        "css-lsp", "tailwindcss-language-server", "ast-grep", "stylelint",
-        "vtsls", "biome", "eslint_d",
+        "html-lsp", "markuplint", "prettierd",
+        "css-lsp", "tailwindcss-language-server", "stylelint",
+        "vtsls", "biome", "eslint_d", "vue-language-server",
         "blade-formatter", "tlint",
-        "java-language-server", "java-debug-adapter",
+        "jdtls", "java-debug-adapter",
         "rust_analyzer"
     },
     -- if set to true this will check each tool for updates. If updates
