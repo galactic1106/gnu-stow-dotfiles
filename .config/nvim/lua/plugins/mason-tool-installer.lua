@@ -5,18 +5,19 @@ require('mason-tool-installer').setup({
     -- a list of all tools you want to ensure are installed upon
     -- start
     ensure_installed = {
-        "lua_ls",
-        "clangd", "cpptools", "cpplint", "clang-format",
+        "lua_ls",                                        --lua
+        "clangd", "cpptools", "cpplint", "clang-format", --c/cpp
 
         -- "intelephense",
-        "laravel-ls", "phpactor", "php-debug-adapter", "phpcs", "phpstan", "pint",
+        "laravel-ls", "phpactor", "php-debug-adapter", "phpcs", "phpstan", "pint", --php and laravel
 
-        "html-lsp", "markuplint", "prettierd", "emmet-language-server",
-        "css-lsp", "tailwindcss-language-server", "stylelint",
-        "vtsls", "biome", "eslint_d", "vue-language-server",
-        "blade-formatter", "tlint",
-        "jdtls", "java-debug-adapter",
-        "rust_analyzer"
+        "html-lsp", "markuplint", "prettierd", "emmet-language-server",            --html
+        "css-lsp", "tailwindcss-language-server", "stylelint",                     -- css
+        "vtsls", "biome", "eslint_d", "vue-language-server",                       -- ts js and vue
+        "blade-formatter", "tlint",                                                -- blade
+        "jdtls", "java-debug-adapter",                                             --java
+        "rust_analyzer",                                                           -- rust?
+        "basedpyright", "debugpy", "flake8", "black"                               --python
     },
     -- if set to true this will check each tool for updates. If updates
     -- are available the tool will be updated. This setting does not
