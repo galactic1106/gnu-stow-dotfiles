@@ -7,8 +7,11 @@ require('mason-tool-installer').setup({
     ensure_installed = {
         "lua_ls",
         "clangd", "cpptools", "cpplint", "clang-format",
-        "intelephense", "laravel-ls", "phpactor", "php-debug-adapter", "phpcs", "phpstan", "pint",
-        "html-lsp", "markuplint", "prettierd",
+
+        -- "intelephense",
+        "laravel-ls", "phpactor", "php-debug-adapter", "phpcs", "phpstan", "pint",
+
+        "html-lsp", "markuplint", "prettierd", "emmet-language-server",
         "css-lsp", "tailwindcss-language-server", "stylelint",
         "vtsls", "biome", "eslint_d", "vue-language-server",
         "blade-formatter", "tlint",
@@ -31,7 +34,7 @@ require('mason-tool-installer').setup({
     -- effective if run_on_start is set to true.
     -- e.g.: 5000 = 5 second delay, 10000 = 10 second delay, etc...
     -- Default: 0
-    start_delay = 0, -- 3 second delay
+    start_delay = 3, -- 3 second delay
 
     -- Only attempt to install if 'debounce_hours' number of hours has
     -- elapsed since the last time Neovim was started. This stores a
@@ -39,7 +42,7 @@ require('mason-tool-installer').setup({
     -- This is only relevant when you are using 'run_on_start'. It has no
     -- effect when running manually via ':MasonToolsInstall' etc....
     -- Default: nil
-    debounce_hours = 0, -- at least 5 hours between attempts to install/update
+    debounce_hours = 1, -- at least 5 hours between attempts to install/update
 
     -- By default all integrations are enabled. If you turn on an integration
     -- and you have the required module(s) installed this means you can use
