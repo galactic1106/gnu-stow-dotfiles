@@ -1,6 +1,5 @@
 vim.pack.add({ { src = 'https://github.com/Saghen/blink.cmp', name = "blink" } })
 
-
 require("blink.cmp").setup({
     keymap = {
         preset = 'default',
@@ -33,7 +32,7 @@ require("blink.cmp").setup({
         },
         ghost_text = {
             enabled = true,
-            show_with_menu=false,
+            show_with_menu = false,
         },
         documentation = {
             auto_show = false

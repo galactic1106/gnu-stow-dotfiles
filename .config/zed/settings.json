@@ -8,7 +8,6 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "icon_theme": "Catppuccin Mocha",
-  "base_keymap": "VSCode",
   "hide_mouse": "on_typing_and_movement",
   "vim_mode": true,
   "ui_font_size": 16,
@@ -19,7 +18,7 @@
     "dark": "Tokyo Night"
   },
 
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "tab_bar": {
     "show": true
   },
@@ -44,15 +43,12 @@
     "mode": "subtle"
   },
   "agent": {
-    "default_profile": "ask",
+    "default_profile": "write",
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4"
-    },
-    "inline_assistant_model": {
       "provider": "google",
       "model": "gemini-2.5-pro"
-    }
+    },
+    "model_parameters": []
   },
   "features": { "edit_prediction_provider": "supermaven" },
 
@@ -86,8 +82,5 @@
       }
     }
   },
-  "file_finder": {
-    "Blade": ["*.blade.php"],
-    "PHP": ["*.php", "*.blade.php"]
   }
 }
