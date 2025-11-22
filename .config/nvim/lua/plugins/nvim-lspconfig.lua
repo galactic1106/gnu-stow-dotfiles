@@ -11,6 +11,12 @@ local servers = {
     ts_ls = {
         filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" },
     },
+    eslint = {
+        filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" },
+        settings = {
+            workingDirectories = { mode = "auto" },
+        },
+    },
     lua_ls = {
         settings = {
             Lua = {
