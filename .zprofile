@@ -6,7 +6,7 @@
 export EDITOR="nvim"
 export TERM="st"
 export TERMINAL="st"
-export BROWSER="firefox"
+export BROWSER="zen-browser"
 export VISUAL="nvim"
 # export DISPLAY=:0 # useful for some scripts
 
@@ -71,4 +71,9 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 export PATH="$PATH:/home/galactic1106/.local/bin"
 # add composer binaries to path
 export PATH=$PATH:~/.config/composer/vendor/bin
+
+#enable clipboard in cosmic-de
+# export COSMIC_DATA_CONTROL_ENABLED=1
+
+
 

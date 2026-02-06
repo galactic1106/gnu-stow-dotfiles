@@ -7,6 +7,15 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "git_panel": {
+    "dock": "right"
+  },
+  "terminal": {
+    "dock": "bottom"
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
   "icon_theme": "Catppuccin Mocha",
   "hide_mouse": "on_typing_and_movement",
   "vim_mode": true,
@@ -15,72 +24,122 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Tokyo Night"
+    "dark": "Ayu Dark",
   },
 
   "relative_line_numbers": "enabled",
   "tab_bar": {
-    "show": true
+    "show": true,
   },
 
   "indent_guides": {
     "enabled": true,
     "coloring": "indent_aware",
-    "background_coloring": "disabled"
+    "background_coloring": "disabled",
   },
 
-  "project_panel": { "dock": "left" },
+  "project_panel": { "dock": "right" },
 
   "autosave": {
     "after_delay": {
-      "milliseconds": 3000
-    }
+      "milliseconds": 500,
+    },
   },
   "format_on_save": "on",
 
   "show_edit_predictions": false,
   "edit_predictions": {
-    "mode": "subtle"
+    "mode": "subtle",
   },
   "agent": {
+    "always_allow_tool_actions": true,
     "default_profile": "write",
     "default_model": {
-      "provider": "google",
-      "model": "gemini-2.5-pro"
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4.5",
     },
-    "model_parameters": []
+    "model_parameters": [],
   },
   "features": { "edit_prediction_provider": "supermaven" },
 
+  "lsp": {
+    "eslint": {
+      "settings": {
+        "run": "onSave",
+        "autoFixOnSave": true,
+      },
+    },
+    "phpactor": {
+      "settings": {
+        "phpactor.enable": true,
+        "language_server_phpstan.enabled": false,
+        "language_server_psalm.enabled": false,
+        "language_server_worse_reflection.inlay_hints.enable": false,
+        "worse_reflection.enable_cache": true,
+        "language_server.diagnostics_on_update": false,
+        "language_server.diagnostics_on_save": false,
+      },
+    },
+  },
+
   "languages": {
     "PHP": {
-      "hard_tabs": true,
+      "language_servers": ["phpactor", "..."],
+      "formatter": "language_server",
+      "format_on_save": "on",
       "tab_size": 4,
-      "language_servers": ["phpactor", "!intelephense"],
-      "formatter": {
-        // "code_actions": {
-        //   "source.fixAll.phpactor.phpCsFixer": true
-        // },
-        "external": {
-          "command": "bash",
-          "arguments": [
-            "-c",
-            "cat > {buffer_path} && ./vendor/bin/pint --quiet {buffer_path} && cat {buffer_path}"
-          ]
-        }
-      }
     },
-
-    "Blade": {
-      "hard_tabs": true,
-      "tab_size": 4,
-      "formatter": "prettier",
-      "prettier": {
-        "allowed": true,
-        "plugins": ["@shufo/prettier-plugin-blade"],
-        "parser": "blade"
-      }
-    }
+    "Vue": {
+      "language_servers": ["volar", "eslint", "..."],
+      "formatter": {
+        "external": {
+          "command": "npx",
+          "arguments": ["prettier", "--write", "--parser", "vue"],
+        },
+      },
+      "format_on_save": "on",
+      "tab_size": 2,
+    },
+    "JavaScript": {
+      "language_servers": ["typescript-language-server", "eslint", "..."],
+      "formatter": {
+        "external": {
+          "command": "npx",
+          "arguments": ["prettier", "--write", "--parser", "babel"],
+        },
+      },
+      "format_on_save": "on",
+      "tab_size": 2,
+    },
+    "TypeScript": {
+      "language_servers": ["typescript-language-server", "eslint", "..."],
+      "formatter": {
+        "external": {
+          "command": "npx",
+          "arguments": ["prettier", "--write", "--parser", "typescript"],
+        },
+      },
+      "format_on_save": "on",
+      "tab_size": 2,
+    },
+    "CSS": {
+      "language_servers": ["tailwindcss-language-server", "..."],
+      "formatter": {
+        "external": {
+          "command": "npx",
+          "arguments": ["prettier", "--write", "--parser", "css"],
+        },
+      },
+      "format_on_save": "on",
+      "tab_size": 2,
+    },
+    "C": {
+      "formatter": {
+        "external": {
+          "command": "clang-format",
+          "arguments": ["-style={BasedOnStyle: LLVM, ColumnLimit: 0}"],
+        },
+      },
+    },
   },
-  }
 }

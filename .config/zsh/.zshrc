@@ -17,35 +17,45 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 
 # load modules
 zmodload zsh/complist
-autoload -Uz compinit && compinit
+autoload -Uz compinit
 autoload -U colors && colors
 
 # edit command line with vim
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey '^Xe' edit-command-line
-bindkey '^X^E' edit-command-line
-# autoload -U tetris # main attraction of zsh, obviously
+
+bindkey -e
+bindkey '^E' edit-command-line
 
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
-# zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
-# Add in snippets
-zinit snippet OMZL::git.zsh
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
-zinit snippet OMZP::aws
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::kubectx
+zinit snippet OMZP::git
+zinit snippet OMZP::gh
+zinit snippet OMZP::sudo
+zinit snippet OMZP::mise
+zinit snippet OMZP::docker
+zinit snippet OMZP::docker-compose
+zinit snippet OMZP::podman
+zinit snippet OMZP::bun
 zinit snippet OMZP::command-not-found
+zinit snippet OMZP::common-aliases
+zinit snippet OMZP::composer
+zinit snippet OMZP::eza
+zinit snippet OMZP::golang
+zinit snippet OMZP::pip
+zinit snippet OMZP::pipenv
+zinit snippet OMZP::postgres
+zinit snippet OMZP::rust
+zinit snippet OMZP::ssh
+
+compinit
 zinit cdreplay -q
 
 # Keybinds
-bindkey -e  #set default keybinds i think?
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey -M emacs '^H' backward-kill-word
@@ -71,7 +81,7 @@ setopt inc_append_history # save history entries as soon as they are entered
 setopt share_history # share history between different instances
 
 
-setopt autocd # type a dir to cd
+# setopt autocd # type a dir to cd
 setopt auto_param_slash # when a dir is completed, add a / instead of a trailing space
 setopt no_case_glob no_case_match # make cmp case insensitive
 setopt extended_glob # match ~ # ^
@@ -92,30 +102,27 @@ zstyle ':completion:*' special-dirs true # force . and .. to show in cmp menu
 zstyle ':completion:*' squeeze-slashes false # explicit disable to allow /*/ expansion
 
 # completions with ls
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath' # preview directory contents with cd
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath' # preview directory contents with zoxide
-
+# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath' # preview directory contents with cd
+# zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath' # preview directory contents with zoxide
 # completions with eza
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --icons=always --color=always --oneline $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --icons=always --color=always --oneline $realpath'
 
 zstyle ':fzf-tab:*' fzf-flags --ignore-case
-# zstyle ':fzf-tab:*' use-fzf-default-opts yes # use FZF_DEFAULT_OPTS for fzf-tab
-# zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:*' use-fzf-default-opts yes # use FZF_DEFAULT_OPTS for fzf-tab
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Set up fzf key bindings and fuzzy completion
 if [[ -x $(command -v fzf) ]]; then eval "$(fzf --zsh)"; fi
 
 # initialize zoxide
 eval "$(zoxide init --cmd cd zsh)"
-
-
-
-# bun completions
-# [ -s "$HOME/.bun/_bun" ] && source "/home/galactic1106/.bun/_bun"
-# export BUN_INSTALL="$HOME/.bun"
-# export PATH="$BUN_INSTALL/bin:$PATH"
-
 
 # set up yazi
 function y() {
@@ -127,8 +134,4 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-# Created by `pipx` on 2024-11-04 22:41:35
-export PATH="$PATH:/home/galactic1106/.local/bin"
-
-# add composer binaries to path
-export PATH=$PATH:~/.config/composer/vendor/bin
+eval "$(mise activate zsh)"
