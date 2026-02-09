@@ -26,6 +26,9 @@ local servers = {
             },
         },
     },
+    jsonls={},
+    yamlls={},
+    taplo={},
 }
 
 -- Loop through the servers and set them up

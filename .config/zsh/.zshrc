@@ -13,7 +13,7 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # initialize oh-my-posh
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
+# eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 
 # load modules
 zmodload zsh/complist
@@ -88,7 +88,7 @@ setopt extended_glob # match ~ # ^
 setopt interactive_comments # allow comments in shell
 unsetopt prompt_sp # don't autoclean blanklines
 
-
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
 
 
 # Completion styling
@@ -108,15 +108,16 @@ zstyle ':completion:*' squeeze-slashes false # explicit disable to allow /*/ exp
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --icons=always --color=always --oneline $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --icons=always --color=always --oneline $realpath'
 
-zstyle ':fzf-tab:*' fzf-flags --ignore-case
 zstyle ':fzf-tab:*' use-fzf-default-opts yes # use FZF_DEFAULT_OPTS for fzf-tab
+zstyle ':fzf-tab:*' fzf-flags --ignore-case
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
 # set descriptions format to enable group support
 zstyle ':completion:*:descriptions' format '[%d]'
 
-# set list-colors to enable filename colorizing
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+
+zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
 
 # Set up fzf key bindings and fuzzy completion
 if [[ -x $(command -v fzf) ]]; then eval "$(fzf --zsh)"; fi
@@ -134,4 +135,10 @@ function y() {
 	rm -f -- "$tmp"
 }
 
+
 eval "$(mise activate zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(starship init zsh)"
+
+source <(carapace _carapace)
+

@@ -47,11 +47,6 @@ export FFMPEG_DATADIR="$XDG_CONFIG_HOME/ffmpeg"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export DATE=$(date "+%A, %B %e  %_I:%M%P")
 
-# export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
-# export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
-
-# export FZF_DEFAULT_OPTS="--color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
-# export FZF_CTRL_R_OPTS="--color 16 --info inline --no-sort --no-preview" # separate opts for history widget
 
 # man highlighting
 export MANPAGER="less -R --use-color -Dd+r -Du+b" # colored man pages
@@ -72,8 +67,6 @@ export PATH="$PATH:/home/galactic1106/.local/bin"
 # add composer binaries to path
 export PATH=$PATH:~/.config/composer/vendor/bin
 
-#enable clipboard in cosmic-de
-# export COSMIC_DATA_CONTROL_ENABLED=1
 
 
 

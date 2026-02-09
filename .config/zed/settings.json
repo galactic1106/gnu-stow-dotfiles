@@ -8,13 +8,13 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "git_panel": {
-    "dock": "right"
+    "dock": "right",
   },
   "terminal": {
-    "dock": "bottom"
+    "dock": "bottom",
   },
   "outline_panel": {
-    "dock": "right"
+    "dock": "right",
   },
   "icon_theme": "Catppuccin Mocha",
   "hide_mouse": "on_typing_and_movement",
@@ -40,6 +40,8 @@
 
   "project_panel": { "dock": "right" },
 
+  "diagnostics": { "inline": { "enabled": true } },
+
   "autosave": {
     "after_delay": {
       "milliseconds": 500,
@@ -49,6 +51,7 @@
 
   "show_edit_predictions": false,
   "edit_predictions": {
+    "provider": "supermaven",
     "mode": "subtle",
   },
   "agent": {
@@ -60,7 +63,6 @@
     },
     "model_parameters": [],
   },
-  "features": { "edit_prediction_provider": "supermaven" },
 
   "lsp": {
     "eslint": {
@@ -80,16 +82,29 @@
         "language_server.diagnostics_on_save": false,
       },
     },
+    "postgres-language-server": {
+      "settings": {
+        "lint": {
+          "rules": {
+            "safety/banDropTable": "off",
+          },
+        },
+      },
+    },
   },
 
   "languages": {
+    "Nginx": {
+      "hard_tabs": true,
+      "enable_language_server": false,
+    },
     "PHP": {
       "language_servers": ["phpactor", "..."],
       "formatter": "language_server",
       "format_on_save": "on",
       "tab_size": 4,
     },
-    "Vue": {
+    "Vue.js": {
       "language_servers": ["volar", "eslint", "..."],
       "formatter": {
         "external": {
