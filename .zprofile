@@ -46,6 +46,7 @@ export PARALLEL_HOME="$XDG_CONFIG_HOME/parallel"
 export FFMPEG_DATADIR="$XDG_CONFIG_HOME/ffmpeg"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export DATE=$(date "+%A, %B %e  %_I:%M%P")
+export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
 
 
 # man highlighting

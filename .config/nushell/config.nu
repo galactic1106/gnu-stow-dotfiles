@@ -1,5 +1,19 @@
+# $env.config.color_config.hints = "#011423"
+let carapace_completer = {|spans|
+    # if the current command is an alias, get its expansion
+    let expanded_alias = (try { scope aliases | where name == $spans.0 | get 0.expansion })
+
+    # overwrite
+    let spans = (if $expanded_alias != null {
+        # put the full expanded alias (including flags) in the span
+        $spans | skip 1 | prepend ($expanded_alias | split row " ")
+    } else { $spans })
+
+    carapace $spans.0 nushell ...$spans | from json
+}
 
 $env.config = {
+
     show_banner: false
     ls: {
         use_ls_colors: true # use the LS_COLORS environment variable to colorize output
@@ -61,7 +75,7 @@ $env.config = {
         external: {
             enable: true  # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up may be very slow
             max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
-            completer: null # check 'carapace_completer' above as an example
+            completer: $carapace_completer # check 'carapace_completer' above as an example
         }
         # use_ls_colors: true # set this to true to enable file/path/directory completions using LS_COLORS
     }
@@ -787,9 +801,16 @@ alias kns = kubens
 alias kl = kubectl logs -f
 alias ke = kubectl exec -it
 
+
+alias vi = nvim
+alias vim = nvim
+alias mysql = mariadb
+
 source ~/.config/nushell/env.nu
 source ~/.zoxide.nu
-source ~/.cache/carapace/init.nu
+# source $"($nu.cache-dir)/carapace.nu"
 source ~/.local/share/atuin/init.nu
+
 use ~/.cache/starship/init.nu
 
+# source ($nu.default-config-dir | path join "vendor/autoload/carapace.nu")

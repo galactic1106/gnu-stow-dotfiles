@@ -29,6 +29,8 @@ local servers = {
     jsonls={},
     yamlls={},
     taplo={},
+    nushell={},
+    svelte={}
 }
 
 -- Loop through the servers and set them up

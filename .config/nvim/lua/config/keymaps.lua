@@ -12,11 +12,35 @@ end
 
 vim.keymap.set('n', '<leader>lf', smart_format)
 
-vim.keymap.set('n', '<leader>ff', ':Telescope find_files<cr>')
-vim.keymap.set('n', '<leader>fg', ':Telescope live_grep<cr>')
-vim.keymap.set('n', '<leader>fh', ':Telescope help_tags<cr>')
-vim.keymap.set('n', '<leader>fc', ':Telescope commands<cr>')
-vim.keymap.set('n', '<leader>fk', ':Telescope keymaps<cr>')
+-- Telescope keymaps
+vim.keymap.set('n', '<leader>ff', ':Telescope find_files<cr>', { desc = 'Find Files' })
+vim.keymap.set('n', '<leader>fg', ':Telescope live_grep<cr>', { desc = 'Live Grep' })
+vim.keymap.set('n', '<leader>fb', ':Telescope buffers<cr>', { desc = 'Find Buffers' })
+vim.keymap.set('n', '<leader>fh', ':Telescope help_tags<cr>', { desc = 'Help Tags' })
+vim.keymap.set('n', '<leader>fc', ':Telescope commands<cr>', { desc = 'Commands' })
+vim.keymap.set('n', '<leader>fk', ':Telescope keymaps<cr>', { desc = 'Keymaps' })
+vim.keymap.set('n', '<leader>fo', ':Telescope oldfiles<cr>', { desc = 'Recent Files' })
+vim.keymap.set('n', '<leader>fw', ':Telescope grep_string<cr>', { desc = 'Find Word Under Cursor' })
+vim.keymap.set('n', '<leader>fr', ':Telescope resume<cr>', { desc = 'Resume Last Search' })
+vim.keymap.set('n', '<leader>fs', ':Telescope lsp_document_symbols<cr>', { desc = 'Document Symbols' })
+
+-- Toggle hidden files in find_files
+vim.keymap.set('n', '<leader>fH', function()
+    require('telescope.builtin').find_files({
+        find_command = { 'fd', '--type', 'f', '--hidden', '--no-ignore', '--strip-cwd-prefix' },
+        prompt_title = 'Find Files (Hidden + No Ignore)',
+    })
+end, { desc = 'Find Files (Include Hidden/Ignored)' })
+
+-- Toggle hidden files in live_grep
+vim.keymap.set('n', '<leader>fG', function()
+    require('telescope.builtin').live_grep({
+        additional_args = function()
+            return { "--hidden", "--no-ignore" }
+        end,
+        prompt_title = 'Live Grep (Hidden + No Ignore)',
+    })
+end, { desc = 'Live Grep (Include Hidden/Ignored)' })
 
 vim.keymap.set("n", "<leader>e", function()
     require("yazi").yazi()

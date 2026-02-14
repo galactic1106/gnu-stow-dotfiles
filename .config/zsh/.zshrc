@@ -15,10 +15,12 @@ source "${ZINIT_HOME}/zinit.zsh"
 # initialize oh-my-posh
 # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 
-# load modules
+
 zmodload zsh/complist
+# load modules
 autoload -Uz compinit
 autoload -U colors && colors
+
 
 # edit command line with vim
 autoload -Uz edit-command-line
@@ -32,25 +34,25 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light Aloxaf/fzf-tab
 
-zinit snippet OMZP::archlinux
-zinit snippet OMZP::git
-zinit snippet OMZP::gh
-zinit snippet OMZP::sudo
-zinit snippet OMZP::mise
-zinit snippet OMZP::docker
-zinit snippet OMZP::docker-compose
-zinit snippet OMZP::podman
-zinit snippet OMZP::bun
+# zinit snippet OMZP::archlinux
+# zinit snippet OMZP::git
+# zinit snippet OMZP::gh
+# zinit snippet OMZP::sudo
+# zinit snippet OMZP::mise
+# zinit snippet OMZP::docker
+# zinit snippet OMZP::docker-compose
+# zinit snippet OMZP::podman
+# zinit snippet OMZP::bun
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::common-aliases
-zinit snippet OMZP::composer
-zinit snippet OMZP::eza
-zinit snippet OMZP::golang
-zinit snippet OMZP::pip
-zinit snippet OMZP::pipenv
-zinit snippet OMZP::postgres
-zinit snippet OMZP::rust
-zinit snippet OMZP::ssh
+# zinit snippet OMZP::composer
+# zinit snippet OMZP::eza
+# zinit snippet OMZP::golang
+# zinit snippet OMZP::pip
+# zinit snippet OMZP::pipenv
+# zinit snippet OMZP::postgres
+# zinit snippet OMZP::rust
+# zinit snippet OMZP::ssh
 
 compinit
 zinit cdreplay -q
@@ -122,8 +124,13 @@ zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'exter
 # Set up fzf key bindings and fuzzy completion
 if [[ -x $(command -v fzf) ]]; then eval "$(fzf --zsh)"; fi
 
-# initialize zoxide
+
 eval "$(zoxide init --cmd cd zsh)"
+eval "$(mise activate zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(starship init zsh)"
+
+source <(carapace _carapace)
 
 # set up yazi
 function y() {
@@ -134,11 +141,3 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
-
-
-eval "$(mise activate zsh)"
-eval "$(atuin init zsh --disable-up-arrow)"
-eval "$(starship init zsh)"
-
-source <(carapace _carapace)
-
