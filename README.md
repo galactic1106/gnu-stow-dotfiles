@@ -15,6 +15,8 @@ This directory contains my dotfiles
 - eza
 - yazi
 - ghostty / alacritty
+- ripgrep
+- fd
 
 ## Installation
 
