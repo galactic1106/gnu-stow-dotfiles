@@ -30,7 +30,9 @@ local servers = {
     yamlls={},
     taplo={},
     nushell={},
-    svelte={}
+    svelte={},
+    jdtls={},
+    clang={}
 }
 
 -- Loop through the servers and set them up

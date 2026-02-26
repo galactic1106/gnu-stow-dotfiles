@@ -16,8 +16,13 @@ source "${ZINIT_HOME}/zinit.zsh"
 # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 
 
-zmodload zsh/complist
+# zmodload zsh/complist
 # load modules
+
+autoload -U compinit && compinit
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+source <(carapace _carapace)
+
 autoload -Uz compinit
 autoload -U colors && colors
 
@@ -34,27 +39,7 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light Aloxaf/fzf-tab
 
-# zinit snippet OMZP::archlinux
-# zinit snippet OMZP::git
-# zinit snippet OMZP::gh
-# zinit snippet OMZP::sudo
-# zinit snippet OMZP::mise
-# zinit snippet OMZP::docker
-# zinit snippet OMZP::docker-compose
-# zinit snippet OMZP::podman
-# zinit snippet OMZP::bun
-zinit snippet OMZP::command-not-found
-zinit snippet OMZP::common-aliases
-# zinit snippet OMZP::composer
-# zinit snippet OMZP::eza
-# zinit snippet OMZP::golang
-# zinit snippet OMZP::pip
-# zinit snippet OMZP::pipenv
-# zinit snippet OMZP::postgres
-# zinit snippet OMZP::rust
-# zinit snippet OMZP::ssh
 
-compinit
 zinit cdreplay -q
 
 # Keybinds
@@ -89,8 +74,6 @@ setopt no_case_glob no_case_match # make cmp case insensitive
 setopt extended_glob # match ~ # ^
 setopt interactive_comments # allow comments in shell
 unsetopt prompt_sp # don't autoclean blanklines
-
-export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
 
 
 # Completion styling
@@ -129,8 +112,6 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(mise activate zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(starship init zsh)"
-
-source <(carapace _carapace)
 
 # set up yazi
 function y() {
