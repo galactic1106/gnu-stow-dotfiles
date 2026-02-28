@@ -114,3 +114,50 @@ vim.keymap.set('n', '<leader>uw', function()
     vim.wo.wrap = not vim.wo.wrap
     print('Wrap: ' .. tostring(vim.wo.wrap))
 end, { desc = 'Toggle word wrap' })
+
+-- Enhanced diagnostic floating window
+vim.keymap.set('n', 'gl', function()
+  vim.diagnostic.open_float({
+    border = 'rounded',
+    source = 'always',
+    scope = 'line',
+    focus = false,
+    header = '',
+    prefix = function(diagnostic, i, total)
+      local signs_map = {
+        [vim.diagnostic.severity.ERROR] = '󰅚 ',
+        [vim.diagnostic.severity.WARN] = '󰀪 ',
+        [vim.diagnostic.severity.HINT] = '󰌶 ',
+        [vim.diagnostic.severity.INFO] = ' ',
+      }
+      local icon = signs_map[diagnostic.severity] or ' '
+      local prefix_text = string.format("%d/%d ", i, total)
+      return prefix_text .. icon, 'DiagnosticSign' .. vim.diagnostic.severity[diagnostic.severity]
+    end,
+  })
+end, { desc = 'Line Diagnostics (Floating)' })
+
+-- Toggle virtual text (inline diagnostics)
+vim.keymap.set('n', '<leader>dv', function()
+  local config = vim.diagnostic.config()
+  if config.virtual_text then
+    vim.diagnostic.config({ virtual_text = false })
+    print("Virtual text disabled")
+  else
+    vim.diagnostic.config({
+      virtual_text = {
+        severity = { min = vim.diagnostic.severity.WARN },
+        source = "if_many",
+        prefix = '●',
+        spacing = 4,
+      }
+    })
+    print("Virtual text enabled")
+  end
+end, { desc = 'Toggle Diagnostic Virtual Text' })
+
+-- Show all buffer diagnostics in location list
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = 'Diagnostics to Location List' })
+
+-- Show all workspace diagnostics in quickfix
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist, { desc = 'Diagnostics to Quickfix' })

@@ -19,18 +19,3 @@ require('nvim-autopairs').setup({
     map_c_h = false,                  -- Map <C-h> to delete a pair
     map_c_w = false,                  -- Map <C-w> to delete a pair if possible
 })
-
--- Integration with blink.cmp
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-local blink_cmp = require('blink.cmp')
-
--- This will automatically insert `(` after selecting a function or method item
-blink_cmp.setup({
-    completion = {
-        accept = {
-            auto_brackets = {
-                enabled = true,
-            },
-        },
-    },
-})

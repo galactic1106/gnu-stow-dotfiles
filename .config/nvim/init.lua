@@ -1,4 +1,5 @@
 require("config.options")
+require("config.diagnostics")
 require("plugins")
 require("config.colorscheme")
 require("config.keymaps")

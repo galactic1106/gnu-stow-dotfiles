@@ -17,6 +17,11 @@ require("blink.cmp").setup({
         ['<A-0>'] = { function(cmp) cmp.accept({ index = 10 }) end },
     },
     completion = {
+        accept = {
+            auto_brackets = {
+                enabled = true,
+            },
+        },
         menu = {
             auto_show = true,
             auto_show_delay_ms = 250,
