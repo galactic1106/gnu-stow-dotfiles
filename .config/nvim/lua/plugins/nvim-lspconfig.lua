@@ -8,31 +8,18 @@ local servers = {
     laravel_ls = {},
     vue_ls = {},
     tailwindcss = {},
-    ts_ls = {
-        filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" },
-    },
-    eslint = {
-        filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" },
-        settings = {
-            workingDirectories = { mode = "auto" },
-        },
-    },
-    lua_ls = {
-        settings = {
-            Lua = {
-                diagnostics = {
-                    globals = { 'vim' },
-                },
-            },
-        },
-    },
+    ts_ls = { filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" }, }, 
+    eslint = { filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" }, settings = { workingDirectories = { mode = "auto" }, }, },
+    lua_ls = { settings = { Lua = { diagnostics = { globals = { 'vim' }, }, }, }, },
     jsonls={},
     yamlls={},
     taplo={},
     nushell={},
     svelte={},
     jdtls={},
-    clang={}
+    clangd={},
+    gopls={},
+    rustanalyzer={},
 }
 
 -- Loop through the servers and set them up

@@ -31,6 +31,7 @@ autoload -U colors && colors
 autoload -Uz edit-command-line
 zle -N edit-command-line
 
+# bindkey -v # enable vi mode
 bindkey -e
 bindkey '^E' edit-command-line
 
@@ -38,15 +39,15 @@ bindkey '^E' edit-command-line
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light Aloxaf/fzf-tab
-
+zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
 
 zinit cdreplay -q
 
 # Keybinds
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-bindkey -M emacs '^H' backward-kill-word
-bindkey -M emacs '^[[3;5~' kill-word
+# bindkey "^[[1;5C" forward-word
+# bindkey "^[[1;5D" backward-word
+# bindkey -M emacs '^H' backward-kill-word
+# bindkey -M emacs '^[[3;5~' kill-word
 bindkey "^P" up-history
 bindkey "^N" down-history
 
