@@ -41,16 +41,16 @@ require("tiny-inline-diagnostic").setup({
     options = {
         -- Display the source of the diagnostic (e.g., basedpyright, vsserver, lua_ls etc.)
         show_source = {
-            enabled = false,
+            enabled = true,
             -- Show source only when multiple sources exist for the same diagnostic
             if_many = false,
         },
 
         -- Use icons defined in the diagnostic configuration instead of preset icons
-        use_icons_from_diagnostic = false,
+        use_icons_from_diagnostic = true,
 
         -- Set the arrow icon to the same color as the first diagnostic severity
-        set_arrow_to_diag_color = false,
+        set_arrow_to_diag_color = true,
 
         -- Add messages to diagnostics when multiline diagnostics are enabled
         -- If set to false, only signs will be displayed
@@ -68,13 +68,13 @@ require("tiny-inline-diagnostic").setup({
         -- Can be a boolean or a table with detailed options
         multilines = {
             -- Enable multiline diagnostic messages
-            enabled = false,
+            enabled = true,
 
             -- Always show messages on all lines for multiline diagnostics
             always_show = false,
 
             -- Trim whitespaces from the start/end of each line
-            trim_whitespaces = false,
+            trim_whitespaces = true,
 
             -- Replace tabs with this many spaces in multiline diagnostics
             tabstop = 4,
@@ -143,4 +143,4 @@ require("tiny-inline-diagnostic").setup({
     disabled_ft = {}
 })
 
-vim.diagnostic.config({ virtual_text = false }) -- Disable default virtual text
+-- Diagnostic config moved to lua/config/options.lua to load earlier

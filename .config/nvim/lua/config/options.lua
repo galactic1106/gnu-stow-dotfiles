@@ -23,7 +23,7 @@ vim.opt.scrolloff = 8     -- Keep 8 lines above/below cursor
 vim.opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
 
 -- Show whitespace characters
-vim.opt.list = true
+vim.opt.list = false
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Search
@@ -45,7 +45,7 @@ vim.opt.splitbelow = true
 vim.opt.undofile = true
 
 -- Set the default border for all floating windows
-vim.opt.winborder = 'rounded'
+vim.opt.winborder = 'solid'
 
 -- Better completion experience
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
