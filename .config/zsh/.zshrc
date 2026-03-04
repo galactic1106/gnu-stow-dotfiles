@@ -12,20 +12,16 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# initialize oh-my-posh
-# eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
-
-
-# zmodload zsh/complist
+zmodload zsh/complist
 # load modules
 
-autoload -U compinit && compinit
-export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
-source <(carapace _carapace)
-
-autoload -Uz compinit
+autoload -Uz compinit && compinit
 autoload -U colors && colors
 
+# export CARAPACE_MERGE_FLAGS=0
+# export CARAPACE_HIDDEN=2
+# export CARAPACE_BRIDGES='cobra,zsh'
+# source <(carapace _carapace)
 
 # edit command line with vim
 autoload -Uz edit-command-line
@@ -40,14 +36,8 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light Aloxaf/fzf-tab
 zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
-
 zinit cdreplay -q
 
-# Keybinds
-# bindkey "^[[1;5C" forward-word
-# bindkey "^[[1;5D" backward-word
-# bindkey -M emacs '^H' backward-kill-word
-# bindkey -M emacs '^[[3;5~' kill-word
 bindkey "^P" up-history
 bindkey "^N" down-history
 
@@ -78,10 +68,11 @@ unsetopt prompt_sp # don't autoclean blanklines
 
 
 # Completion styling
+# setopt MENU_COMPLETE
 # zstyle ':completion:*' file-list true # more detailed list
-setopt MENU_COMPLETE
 setopt globdots # show  hidden files by default
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Za-z}' # case-insensitive completion
+zstyle ':completion:*' completer _complete _ignored # set completion sources
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # case-insensitive completion
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # colorize filenames
 zstyle ':completion:*' menu no # disable menu completion for fzf-tab
 zstyle ':completion:*' special-dirs true # force . and .. to show in cmp menu
@@ -96,14 +87,13 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --icons=always --color=
 
 zstyle ':fzf-tab:*' use-fzf-default-opts yes # use FZF_DEFAULT_OPTS for fzf-tab
 zstyle ':fzf-tab:*' fzf-flags --ignore-case
-zstyle ':fzf-tab:*' switch-group '<' '>'
+# zstyle ':fzf-tab:*' switch-group '<' '>'
 
 # set descriptions format to enable group support
-zstyle ':completion:*:descriptions' format '[%d]'
+# zstyle ':completion:*:descriptions' format '[%d]'
+# zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
+# zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 
-zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-
-zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
 
 # Set up fzf key bindings and fuzzy completion
 if [[ -x $(command -v fzf) ]]; then eval "$(fzf --zsh)"; fi
