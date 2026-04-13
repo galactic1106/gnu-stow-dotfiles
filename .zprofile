@@ -63,10 +63,17 @@ export LESS_TERMCAP_se="$(printf '%b' '[0m')"
 export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
 export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 
+# set qt apps style
+# export QT_QPA_PLATFORMTHEME=qt6ct
+# export QT_STYLE_OVERRIDE=Breeze
+
+
 # Created by `pipx` on 2024-11-04 22:41:35
 export PATH="$PATH:/home/galactic1106/.local/bin"
 # add composer binaries to path
 export PATH=$PATH:~/.config/composer/vendor/bin
+
+export GODOT4_BIN='/usr/bin/godot'
 
 
 

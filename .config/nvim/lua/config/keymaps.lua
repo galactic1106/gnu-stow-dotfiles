@@ -5,16 +5,13 @@ vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = 'Find References' })
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = 'Go to Implementation' })
 vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { desc = 'Go to Type Definition' })
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
-vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { desc = 'Signature Help' })
 vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, { desc = 'Signature Help' })
 vim.keymap.set('n', 'grn', vim.lsp.buf.rename, { desc = 'Rename Symbol' })
 vim.keymap.set('n', '<leader>D', vim.diagnostic.open_float, { desc = 'Show Line Diagnostics' })
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous Diagnostic' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next Diagnostic' })
 
 -- LSP formatting
 vim.keymap.set('n', '<leader>lf', function()
-    vim.lsp.buf.format({ async = true })
+    require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = 'Format Buffer' })
 
 -- Telescope keymaps
@@ -103,11 +100,11 @@ vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>', { silent = true, desc
 vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>', { silent = true, desc = 'Increase window width' })
 
 -- Better terminal navigation
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-vim.keymap.set('t', '<C-h>', '<Cmd>wincmd h<CR>', { desc = 'Terminal navigate left' })
-vim.keymap.set('t', '<C-j>', '<Cmd>wincmd j<CR>', { desc = 'Terminal navigate down' })
-vim.keymap.set('t', '<C-k>', '<Cmd>wincmd k<CR>', { desc = 'Terminal navigate up' })
-vim.keymap.set('t', '<C-l>', '<Cmd>wincmd l<CR>', { desc = 'Terminal navigate right' })
+-- vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+-- vim.keymap.set('t', '<C-h>', '<Cmd>wincmd h<CR>', { desc = 'Terminal navigate left' })
+-- vim.keymap.set('t', '<C-j>', '<Cmd>wincmd j<CR>', { desc = 'Terminal navigate down' })
+-- vim.keymap.set('t', '<C-k>', '<Cmd>wincmd k<CR>', { desc = 'Terminal navigate up' })
+-- vim.keymap.set('t', '<C-l>', '<Cmd>wincmd l<CR>', { desc = 'Terminal navigate right' })
 
 -- Toggle options
 vim.keymap.set('n', '<leader>uw', function()
@@ -117,43 +114,43 @@ end, { desc = 'Toggle word wrap' })
 
 -- Enhanced diagnostic floating window
 vim.keymap.set('n', 'gl', function()
-  vim.diagnostic.open_float({
-    border = 'rounded',
-    source = 'always',
-    scope = 'line',
-    focus = false,
-    header = '',
-    prefix = function(diagnostic, i, total)
-      local signs_map = {
-        [vim.diagnostic.severity.ERROR] = '󰅚 ',
-        [vim.diagnostic.severity.WARN] = '󰀪 ',
-        [vim.diagnostic.severity.HINT] = '󰌶 ',
-        [vim.diagnostic.severity.INFO] = ' ',
-      }
-      local icon = signs_map[diagnostic.severity] or ' '
-      local prefix_text = string.format("%d/%d ", i, total)
-      return prefix_text .. icon, 'DiagnosticSign' .. vim.diagnostic.severity[diagnostic.severity]
-    end,
-  })
+    vim.diagnostic.open_float({
+        border = 'rounded',
+        source = 'always',
+        scope = 'line',
+        focus = false,
+        header = '',
+        prefix = function(diagnostic, i, total)
+            local signs_map = {
+                [vim.diagnostic.severity.ERROR] = '󰅚 ',
+                [vim.diagnostic.severity.WARN] = '󰀪 ',
+                [vim.diagnostic.severity.HINT] = '󰌶 ',
+                [vim.diagnostic.severity.INFO] = ' ',
+            }
+            local icon = signs_map[diagnostic.severity] or ' '
+            local prefix_text = string.format("%d/%d ", i, total)
+            return prefix_text .. icon, 'DiagnosticSign' .. vim.diagnostic.severity[diagnostic.severity]
+        end,
+    })
 end, { desc = 'Line Diagnostics (Floating)' })
 
 -- Toggle virtual text (inline diagnostics)
 vim.keymap.set('n', '<leader>dv', function()
-  local config = vim.diagnostic.config()
-  if config.virtual_text then
-    vim.diagnostic.config({ virtual_text = false })
-    print("Virtual text disabled")
-  else
-    vim.diagnostic.config({
-      virtual_text = {
-        severity = { min = vim.diagnostic.severity.WARN },
-        source = "if_many",
-        prefix = '●',
-        spacing = 4,
-      }
-    })
-    print("Virtual text enabled")
-  end
+    local config = vim.diagnostic.config()
+    if config.virtual_text then
+        vim.diagnostic.config({ virtual_text = false })
+        print("Virtual text disabled")
+    else
+        vim.diagnostic.config({
+            virtual_text = {
+                severity = { min = vim.diagnostic.severity.WARN },
+                source = "if_many",
+                prefix = '●',
+                spacing = 4,
+            }
+        })
+        print("Virtual text enabled")
+    end
 end, { desc = 'Toggle Diagnostic Virtual Text' })
 
 -- Show all buffer diagnostics in location list

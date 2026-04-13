@@ -5,44 +5,45 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- Define server configurations in a table
 local servers = {
-    laravel_ls = {},
-    vue_ls = {},
-    tailwindcss = {},
-    ts_ls = { filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" }, },
-    eslint = { filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" }, settings = { workingDirectories = { mode = "auto" }, }, },
-    lua_ls = { settings = { Lua = { diagnostics = { globals = { 'vim' }, }, }, }, },
-    jsonls = {},
-    yamlls = {},
-    taplo = {},
-    nushell = {},
-    svelte = {},
-    jdtls = {},
-    clangd = {
-        cmd = {
-            "clangd",
-            "--background-index",
-            "--clang-tidy",
-            "--header-insertion=iwyu",
-            "--completion-style=detailed",
-            "--function-arg-placeholders",
-            "--fallback-style=llvm",
-        },
-        init_options = {
-            usePlaceholders = true,
-            completeUnimported = true,
-            clangdFileStatus = true,
-        },
+  laravel_ls = {},
+  vue_ls = {},
+  tailwindcss = {},
+  ts_ls = { filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" }, },
+  eslint = { filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" }, settings = { workingDirectories = { mode = "auto" }, }, },
+  lua_ls = { settings = { Lua = { diagnostics = { globals = { 'vim' }, }, }, }, },
+  jsonls = {},
+  yamlls = {},
+  taplo = {},
+  nushell = {},
+  svelte = {},
+  clangd = {
+    cmd = {
+      "clangd",
+      "--background-index",
+      "--clang-tidy",
+      "--header-insertion=iwyu",
+      "--completion-style=detailed",
+      "--function-arg-placeholders",
+      "--fallback-style=llvm",
     },
-    gopls = {},
-    rustanalyzer = {},
+    init_options = {
+      usePlaceholders = true,
+      completeUnimported = true,
+      clangdFileStatus = true,
+    },
+  },
+  gopls = {},
+  rustanalyzer = {},
+  hyprls = {},
+  gdscript={}
 }
 
 -- Loop through the servers and set them up
 for server_name, config in pairs(servers) do
-    -- Merge capabilities into each server's config
-    config.capabilities = capabilities
+  -- Merge capabilities into each server's config
+  config.capabilities = capabilities
 
-    -- Configure and enable the server
-    vim.lsp.config(server_name, config)
-    vim.lsp.enable(server_name)
+  -- Configure and enable the server
+  vim.lsp.config(server_name, config)
+  vim.lsp.enable(server_name)
 end
