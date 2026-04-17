@@ -35,7 +35,8 @@ local servers = {
   gopls = {},
   rustanalyzer = {},
   hyprls = {},
-  gdscript={}
+  gdscript = {},
+  -- jdtls={}
 }
 
 -- Loop through the servers and set them up

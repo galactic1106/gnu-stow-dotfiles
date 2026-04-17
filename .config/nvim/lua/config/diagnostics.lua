@@ -1,19 +1,5 @@
 -- Enhanced Diagnostics Configuration
 
--- Define custom diagnostic signs with Nerd Font icons
-local signs = {
-    Error = "󰅚 ",
-    Warn = "󰀪 ",
-    Hint = "󰌶 ",
-    Info = " "
-}
-
--- Set the signs in the sign column
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
 -- Configure diagnostics appearance
 vim.diagnostic.config({
     -- Virtual text configuration (inline diagnostics at end of line)
@@ -22,6 +8,12 @@ vim.diagnostic.config({
 
     -- Show signs in the sign column (gutter)
     signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "󰅚 ",
+            [vim.diagnostic.severity.WARN] = "󰀪 ",
+            [vim.diagnostic.severity.HINT] = "󰌶 ",
+            [vim.diagnostic.severity.INFO] = "󰋽 ",
+        },
         severity = { min = vim.diagnostic.severity.HINT }, -- Show all severities
     },
 

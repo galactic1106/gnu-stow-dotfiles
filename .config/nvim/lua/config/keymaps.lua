@@ -1,16 +1,22 @@
 -- LSP keymaps
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to Definition' })
-vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Go to Declaration' })
-vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = 'Find References' })
-vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = 'Go to Implementation' })
-vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { desc = 'Go to Type Definition' })
-vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
-vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, { desc = 'Signature Help' })
-vim.keymap.set('n', 'grn', vim.lsp.buf.rename, { desc = 'Rename Symbol' })
-vim.keymap.set('n', '<leader>D', vim.diagnostic.open_float, { desc = 'Show Line Diagnostics' })
+Snacks.keymap.set('n', 'gd', vim.lsp.buf.definition,
+    { lsp = { method = "textDocument/definition" }, desc = 'Go to Definition' })
+Snacks.keymap.set('n', 'gD', vim.lsp.buf.declaration,
+    { lsp = { method = "textDocument/declaration" }, desc = 'Go to Declaration' })
+Snacks.keymap.set('n', 'gr', vim.lsp.buf.references,
+    { lsp = { method = "textDocument/references" }, desc = 'Find References' })
+Snacks.keymap.set('n', 'gi', vim.lsp.buf.implementation,
+    { lsp = { method = "textDocument/implementation" }, desc = 'Go to Implementation' })
+Snacks.keymap.set('n', 'gt', vim.lsp.buf.type_definition,
+    { lsp = { method = "textDocument/typeDefinition" }, desc = 'Go to Type Definition' })
+Snacks.keymap.set('n', 'K', vim.lsp.buf.hover, { lsp = { method = "textDocument/hover" }, desc = 'Hover Documentation' })
+Snacks.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help,
+    { lsp = { method = "textDocument/signatureHelp" }, desc = 'Signature Help' })
+Snacks.keymap.set('n', 'grn', vim.lsp.buf.rename, { lsp = { method = "textDocument/rename" }, desc = 'Rename Symbol' })
+Snacks.keymap.set('n', '<leader>D', vim.diagnostic.open_float, { desc = 'Show Line Diagnostics' })
 
 -- LSP formatting
-vim.keymap.set('n', '<leader>lf', function()
+Snacks.keymap.set('n', '<leader>lf', function()
     require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = 'Format Buffer' })
 
@@ -53,6 +59,7 @@ vim.keymap.set('i', 'jj', '<esc>', { desc = 'Escape to Normal Mode' })
 vim.keymap.set('n', '<leader>tf', ':Neotree toggle source=filesystem<cr>', { desc = 'Toggle Filesystem' })
 vim.keymap.set('n', '<leader>tg', ':Neotree toggle source=git_status<cr>', { desc = 'Toggle Git Status' })
 vim.keymap.set('n', '<leader>tb', ':Neotree toggle source=buffers<cr>', { desc = 'Toggle Buffers' })
+vim.keymap.set('n', '<leader>ts', ':Neotree toggle source=document_symbols<cr>', { desc = 'Toggle Document Symbols' })
 vim.keymap.set('n', '<leader>tt', ':Neotree toggle<cr>', { desc = 'Toggle NeoTree' })
 
 vim.keymap.set('n', '<C-w>v', ':set splitright<CR>:vsplit<CR>', { desc = 'Split Right' })
@@ -125,7 +132,7 @@ vim.keymap.set('n', 'gl', function()
                 [vim.diagnostic.severity.ERROR] = '󰅚 ',
                 [vim.diagnostic.severity.WARN] = '󰀪 ',
                 [vim.diagnostic.severity.HINT] = '󰌶 ',
-                [vim.diagnostic.severity.INFO] = ' ',
+                [vim.diagnostic.severity.INFO] = '󰋽 ',
             }
             local icon = signs_map[diagnostic.severity] or ' '
             local prefix_text = string.format("%d/%d ", i, total)
