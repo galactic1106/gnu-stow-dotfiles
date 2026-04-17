@@ -1,6 +1,5 @@
 require("plugins.nvim-core-ui-2")
 require("plugins.tokyonight")
-require("plugins.onedark")
 require("plugins.snacks")
 require("plugins.nvim-treesitter")
 require("plugins.nvim-lspconfig")

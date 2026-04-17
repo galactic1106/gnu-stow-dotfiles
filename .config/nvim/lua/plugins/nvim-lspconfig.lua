@@ -5,6 +5,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- Define server configurations in a table
 local servers = {
+  rust_analyzer={},
   laravel_ls = {},
   vue_ls = {},
   tailwindcss = {},
