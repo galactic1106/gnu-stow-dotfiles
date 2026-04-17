@@ -1,28 +1,12 @@
-require("plugins.nvim-core-ui-2")
-require("plugins.tokyonight")
-require("plugins.snacks")
-require("plugins.nvim-treesitter")
-require("plugins.nvim-lspconfig")
-require("plugins.telescope-nvim")
-require("plugins.blink-cmp")
-require("plugins.yazi")
-require("plugins.neo-tree")
-require("plugins.nvim-window-picker")
-require("plugins.nvim-tmux-navigator")
-require("plugins.nvim-surround")
-require("plugins.lualine")
-require("plugins.tiny-inline-diagnostics")
-require("plugins.gitsigns")
-require("plugins.neoscroll")
-require("plugins.dressing")
-require("plugins.pack-manager")
-require("plugins.comment")
-require("plugins.nvim-ts-autotag")
-require("plugins.emmet-vim")
-require("plugins.indentscope")
-require("plugins.which-key")
-require("plugins.nvim-autopairs")
-require("plugins.conform")
-require("plugins.nvim-jdtls")
-require("plugins.mini-ai")
-require("plugins.mini-splitjoin")
+-- Find all .lua files in the plugins directory
+local files = vim.api.nvim_get_runtime_file("lua/plugins/*.lua", true)
+
+for _, file in ipairs(files) do
+    -- Extract the filename
+    local name = vim.fn.fnamemodify(file, ":t")
+
+    if name ~= "init.lua" and string.sub(name, 1, 1) ~= "_" then
+        local mod_name = name:gsub("%.lua$", "")
+        pcall(require, "plugins." .. mod_name)
+    end
+end
