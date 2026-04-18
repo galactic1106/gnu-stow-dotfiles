@@ -60,7 +60,6 @@ require("which-key").add({
 
     -- LSP mappings
     { "<leader>lf", desc = "Format Buffer" },
-    { "<leader>D",  desc = "Show Line Diagnostics" },
 
     -- Laravel mappings
     { "<leader>la", desc = "Laravel Artisan" },
@@ -141,6 +140,7 @@ require("which-key").add({
     { "<leader>uw", desc = "Toggle Word Wrap" },
     { "<leader>us", desc = "Toggle Spell Check" },
     { "<leader>un", desc = "Toggle Line Numbers" },
+    { "<leader>ub", desc = "Toggle Blink Auto Show" },
 
     -- Window/File operations
     { "<leader>w",  desc = "Window Commands" },

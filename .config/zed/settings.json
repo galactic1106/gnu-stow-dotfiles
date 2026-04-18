@@ -51,6 +51,7 @@
 
   "show_edit_predictions": false,
   "edit_predictions": {
+    "provider": "zed",
     "mode": "subtle",
   },
   "agent": {
@@ -60,7 +61,7 @@
     "default_profile": "write",
     "default_model": {
       "effort": "medium",
-      "enable_thinking": true,
+      "enable_thinking": false,
       "provider": "copilot_chat",
       "model": "gemini-3.1-pro-preview",
     },
