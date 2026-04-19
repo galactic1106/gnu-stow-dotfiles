@@ -1,20 +1,17 @@
--- =========================================================================
 -- General
--- =========================================================================
 vim.keymap.set('i', 'jj', '<esc>', { desc = 'Escape to Normal Mode' })
 vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>', { silent = true, desc = 'Clear search highlight' })
+
+-- View messages and errors
+vim.keymap.set('n', '<leader>m', ':messages<CR>', { desc = 'Show Messages/Errors' })
+vim.keymap.set('n', '<leader>un', function() Snacks.notifier.show_history() end, { desc = 'Notification History' })
 
 -- Quick save / quit (Uncomment to enable)
 -- vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Save file' })
 -- vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Quit' })
 -- vim.keymap.set('n', '<leader>Q', ':qa<CR>', { desc = 'Quit all' })
 
--- =========================================================================
 -- Window & Buffer Management
--- =========================================================================
--- Better window navigation alias
-vim.keymap.set('n', '<leader>w', '<C-w>', { remap = true, desc = 'Window commands' })
-
 -- Window splits
 vim.keymap.set('n', '<C-w>v', ':set splitright<CR>:vsplit<CR>', { desc = 'Split Right' })
 vim.keymap.set('n', '<C-w>s', ':set splitbelow<CR>:split<CR>', { desc = 'Split Below' })
@@ -30,8 +27,6 @@ vim.keymap.set('n', '[b', ':bprevious<CR>', { desc = 'Previous buffer' })
 vim.keymap.set('n', ']b', ':bnext<CR>', { desc = 'Next buffer' })
 
 -- Quick list navigation
-vim.keymap.set('n', '<leader>xl', ':lopen<CR>', { desc = 'Location List' })
-vim.keymap.set('n', '<leader>xq', ':copen<CR>', { desc = 'Quickfix List' })
 vim.keymap.set('n', '[q', ':cprev<CR>', { desc = 'Previous quickfix' })
 vim.keymap.set('n', ']q', ':cnext<CR>', { desc = 'Next quickfix' })
 vim.keymap.set('n', '[l', ':lprev<CR>', { desc = 'Previous location' })
@@ -44,38 +39,19 @@ vim.keymap.set('n', ']l', ':lnext<CR>', { desc = 'Next location' })
 -- vim.keymap.set('t', '<C-k>', '<Cmd>wincmd k<CR>', { desc = 'Terminal navigate up' })
 -- vim.keymap.set('t', '<C-l>', '<Cmd>wincmd l<CR>', { desc = 'Terminal navigate right' })
 
--- =========================================================================
 -- Text Editing & Movement
--- =========================================================================
 -- Move lines up and down
 vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', { desc = 'Move line down' })
 vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', { desc = 'Move line up' })
 vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
 vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
 
--- =========================================================================
 -- Toggles (Snacks)
--- =========================================================================
 Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
 
-Snacks.toggle({
-    name = "Diagnostic Virtual Text",
-    get = function() return vim.diagnostic.config().virtual_text ~= false end,
-    set = function(state)
-        if state then
-            vim.diagnostic.config({
-                virtual_text = {
-                    severity = { min = vim.diagnostic.severity.WARN },
-                    source = "if_many",
-                    prefix = '●',
-                    spacing = 4,
-                }
-            })
-        else
-            vim.diagnostic.config({ virtual_text = false })
-        end
-    end,
-}):map("<leader>dv")
+-- Toggle tiny-inline-diagnostic
+vim.keymap.set('n', '<leader>ud', function() require("tiny-inline-diagnostic").toggle() end,
+    { desc = 'Toggle Inline Diagnostics' })
 
 Snacks.toggle({
     name = "Blink Auto Show",
@@ -83,9 +59,7 @@ Snacks.toggle({
     set = function(state) vim.g.blink_cmp_auto_show = state end,
 }):map("<leader>ub")
 
--- =========================================================================
 -- LSP & Diagnostics
--- =========================================================================
 Snacks.keymap.set('n', 'gd', vim.lsp.buf.definition,
     { lsp = { method = "textDocument/definition" }, desc = 'Go to Definition' })
 Snacks.keymap.set('n', 'gD', vim.lsp.buf.declaration,
@@ -100,6 +74,8 @@ Snacks.keymap.set('n', 'K', vim.lsp.buf.hover, { lsp = { method = "textDocument/
 Snacks.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help,
     { lsp = { method = "textDocument/signatureHelp" }, desc = 'Signature Help' })
 Snacks.keymap.set('n', 'grn', vim.lsp.buf.rename, { lsp = { method = "textDocument/rename" }, desc = 'Rename Symbol' })
+Snacks.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action,
+    { lsp = { method = "textDocument/codeAction" }, desc = 'Code Actions' })
 
 Snacks.keymap.set('n', '<leader>lf', function()
     require("conform").format({ async = true, lsp_fallback = true })
@@ -126,12 +102,7 @@ vim.keymap.set('n', 'gl', function()
     })
 end, { desc = 'Line Diagnostics (Floating)' })
 
-vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = 'Diagnostics to Location List' })
-vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist, { desc = 'Diagnostics to Quickfix' })
-
--- =========================================================================
 -- Finding & Navigation (Telescope)
--- =========================================================================
 vim.keymap.set('n', '<leader>ff', ':Telescope find_files<cr>', { desc = 'Find Files' })
 vim.keymap.set('n', '<leader>fg', ':Telescope live_grep<cr>', { desc = 'Live Grep' })
 vim.keymap.set('n', '<leader>fb', ':Telescope buffers<cr>', { desc = 'Find Buffers' })
@@ -159,9 +130,7 @@ vim.keymap.set('n', '<leader>fG', function()
     })
 end, { desc = 'Live Grep (Include Hidden/Ignored)' })
 
--- =========================================================================
 -- File Explorers
--- =========================================================================
 -- Yazi
 vim.keymap.set("n", "<leader>e", function() require("yazi").yazi() end, { desc = 'File Explorer (Yazi)' })
 
@@ -172,9 +141,7 @@ vim.keymap.set('n', '<leader>tb', ':Neotree toggle source=buffers<cr>', { desc =
 vim.keymap.set('n', '<leader>ts', ':Neotree toggle source=document_symbols<cr>', { desc = 'Toggle Document Symbols' })
 vim.keymap.set('n', '<leader>tt', ':Neotree toggle<cr>', { desc = 'Toggle NeoTree' })
 
--- =========================================================================
 -- Tools & Frameworks
--- =========================================================================
 -- Terminal
 vim.keymap.set({ "n", "t" }, "<C-/>", function() Snacks.terminal.toggle() end, { desc = "Toggle Terminal" })
 

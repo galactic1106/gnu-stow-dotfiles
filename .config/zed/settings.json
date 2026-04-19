@@ -56,7 +56,7 @@
   },
   "agent": {
     "tool_permissions": {
-      "default": "allow",
+      "default": "confirm",
     },
     "default_profile": "write",
     "default_model": {

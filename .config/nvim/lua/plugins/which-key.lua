@@ -42,7 +42,8 @@ require("which-key").add({
     { "<leader>b",  group = "Buffer" },
     { "<leader>u",  group = "UI/Toggle" },
     { "<leader>x",  group = "Lists" },
-    { "<leader>w",  group = "Window/Save" },
+    { "<leader>w",  group = "Window/Save",                          proxy = "<C-w>" },
+    { "<leader>m",  desc = "Show Messages/Errors" },
 
     -- Find/Telescope mappings
     { "<leader>ff", desc = "Find Files" },
@@ -76,6 +77,8 @@ require("which-key").add({
 
     -- Code actions
     { "<leader>ca", desc = "Code Actions" },
+    { "<leader>cs", desc = "Symbols (Trouble)" },
+    { "<leader>cl", desc = "LSP Definitions / References (Trouble)" },
 
     -- File explorer
     { "<leader>e",  desc = "File Explorer (Yazi)" },
@@ -107,10 +110,10 @@ require("which-key").add({
 
     -- Other mappings
     { "K",          desc = "Hover Documentation" },
-    { "<C-k>",      desc = "Signature Help",                mode = { "i" } },
+    { "<C-k>",      desc = "Signature Help",                        mode = { "i" } },
 
     -- Escape
-    { "jj",         desc = "Escape to Normal Mode",         mode = "i" },
+    { "jj",         desc = "Escape to Normal Mode",                 mode = "i" },
 
     -- Window splits
     { "<C-w>v",     desc = "Split Right" },
@@ -133,31 +136,33 @@ require("which-key").add({
     { "]q",         desc = "Next Quickfix" },
     { "[l",         desc = "Previous Location" },
     { "]l",         desc = "Next Location" },
-    { "<leader>xl", desc = "Location List" },
-    { "<leader>xq", desc = "Quickfix List" },
+    { "<leader>xl", desc = "Location List (Trouble)" },
+    { "<leader>xq", desc = "Quickfix List (Trouble)" },
+    { "<leader>xx", desc = "Workspace Diagnostics (Trouble)" },
+    { "<leader>xX", desc = "Buffer Diagnostics (Trouble)" },
 
     -- UI/Toggle mappings
     { "<leader>uw", desc = "Toggle Word Wrap" },
     { "<leader>us", desc = "Toggle Spell Check" },
-    { "<leader>un", desc = "Toggle Line Numbers" },
+    { "<leader>un", desc = "Notification History" },
     { "<leader>ub", desc = "Toggle Blink Auto Show" },
+    { "<leader>ud", desc = "Toggle Inline Diagnostics" },
 
     -- Window/File operations
-    { "<leader>w",  desc = "Window Commands" },
 
     -- Visual mode mappings
-    { "<",          desc = "Indent Left",                   mode = "v" },
-    { ">",          desc = "Indent Right",                  mode = "v" },
-    { "<A-j>",      desc = "Move Selection Down",           mode = "v" },
-    { "<A-k>",      desc = "Move Selection Up",             mode = "v" },
-    { "<leader>p",  desc = "Paste Without Yanking",         mode = "x" },
+    { "<",          desc = "Indent Left",                           mode = "v" },
+    { ">",          desc = "Indent Right",                          mode = "v" },
+    { "<A-j>",      desc = "Move Selection Down",                   mode = "v" },
+    { "<A-k>",      desc = "Move Selection Up",                     mode = "v" },
+    { "<leader>p",  desc = "Paste Without Yanking",                 mode = "x" },
 
     -- Move lines
-    { "<A-j>",      desc = "Move Line Down",                mode = "n" },
-    { "<A-k>",      desc = "Move Line Up",                  mode = "n" },
+    { "<A-j>",      desc = "Move Line Down",                        mode = "n" },
+    { "<A-k>",      desc = "Move Line Up",                          mode = "n" },
 
     -- Clear search
-    { "<Esc>",      desc = "Clear Search Highlight",        mode = "n" },
+    { "<Esc>",      desc = "Clear Search Highlight",                mode = "n" },
 
     -- Window resize
     { "<C-Up>",     desc = "Increase Window Height" },
@@ -166,16 +171,13 @@ require("which-key").add({
     { "<C-Right>",  desc = "Increase Window Width" },
 
     -- Terminal mode
-    { "<Esc><Esc>", desc = "Exit Terminal Mode",            mode = "t" },
-    { "<C-h>",      desc = "Terminal Navigate Left",        mode = "t" },
-    { "<C-j>",      desc = "Terminal Navigate Down",        mode = "t" },
-    { "<C-k>",      desc = "Terminal Navigate Up",          mode = "t" },
-    { "<C-l>",      desc = "Terminal Navigate Right",       mode = "t" },
+    { "<Esc><Esc>", desc = "Exit Terminal Mode",                    mode = "t" },
+    { "<C-h>",      desc = "Terminal Navigate Left",                mode = "t" },
+    { "<C-j>",      desc = "Terminal Navigate Down",                mode = "t" },
+    { "<C-k>",      desc = "Terminal Navigate Up",                  mode = "t" },
+    { "<C-l>",      desc = "Terminal Navigate Right",               mode = "t" },
 
     -- Diagnostic mappings
     { "gl",         desc = "Line Diagnostics (Floating)" },
     { "<leader>d",  group = "Diagnostics" },
-    { "<leader>dv", desc = "Toggle Diagnostic Virtual Text" },
-    { "<leader>dl", desc = "Diagnostics to Location List" },
-    { "<leader>dq", desc = "Diagnostics to Quickfix" },
 })

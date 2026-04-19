@@ -3,10 +3,10 @@ vim.pack.add({ { src = "https://github.com/rachartier/tiny-inline-diagnostic.nvi
 require("tiny-inline-diagnostic").setup({
     -- Style preset for diagnostic messages
     -- Available options: "modern", "classic", "minimal", "powerline", "ghost", "simple", "nonerdfont", "amongus"
-    preset = "minimal",
+    preset = "ghost",
 
     -- Set the background of the diagnostic to transparent
-    transparent_bg = false,
+    transparent_bg = true,
 
     -- Set the background of the cursorline to transparent (only for the first diagnostic)
     -- Default is true in the source code, not false as in the old README

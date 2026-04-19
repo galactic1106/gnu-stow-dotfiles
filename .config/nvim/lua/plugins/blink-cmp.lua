@@ -1,6 +1,6 @@
 vim.pack.add({ { src = 'https://github.com/Saghen/blink.cmp', name = "blink" } })
 
-vim.g.blink_cmp_auto_show = false
+vim.g.blink_cmp_auto_show = true
 
 require("blink.cmp").setup({
     keymap = {
@@ -26,7 +26,7 @@ require("blink.cmp").setup({
         },
         menu = {
             auto_show = function() return vim.g.blink_cmp_auto_show end,
-            auto_show_delay_ms = 350,
+            auto_show_delay_ms = 0,
             draw = {
                 columns = { { 'item_idx' }, { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
                 components = {

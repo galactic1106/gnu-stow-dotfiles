@@ -1,13 +1,4 @@
-vim.pack.add({ { src = "https://github.com/alexghergh/nvim-tmux-navigation", name = "nvim-tmux-navigation" } })
+vim.pack.add({ { src = "https://github.com/christoomey/vim-tmux-navigator", name = "vim-tmux-navigator" } })
 
-require('nvim-tmux-navigation').setup({
-    disable_when_zoomed = true, -- defaults to false
-    keybindings = {
-        left = "<C-h>",
-        down = "<C-j>",
-        up = "<C-k>",
-        right = "<C-l>",
-        last_active = "<C-\\>",
-        next = "<C-Space>",
-    }
-})
+-- vim-tmux-navigator is written in Vimscript, so we don't need a setup() function
+-- It automatically maps <C-h>, <C-j>, <C-k>, <C-l> and <C-\> by default

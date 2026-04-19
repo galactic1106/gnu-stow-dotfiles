@@ -1,60 +1,35 @@
-vim.pack.add({ { src = "https://github.com/nvim-treesitter/nvim-treesitter", name = "nvim-treesitter" } })
+vim.pack.add({ { src = "https://github.com/nvim-treesitter/nvim-treesitter", name = "nvim-treesitter", version = "main" } })
 
-require('nvim-treesitter.configs').setup({
-    -- A list of parser names, or "all" (the listed parsers MUST always be installed)
-    ensure_installed = { "scss", "css", "lua", "php", "blade", "typescript", "javascript", "c", "vue", "java", "cpp", "html" },
+-- nvim-treesitter for Neovim 0.12+ (main branch) has been completely rewritten.
+-- Syntax highlighting and indentation are now fully native to Neovim 0.12.
+-- We no longer need to define `highlight = { enable = true }` or use the old configs module.
 
-    -- Install parsers synchronously (only applied to `ensure_installed`)
-    sync_install = false,
+local ts = require('nvim-treesitter')
 
-    -- Automatically install missing parsers when entering buffer
-    -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-    auto_install = true,
+-- Initialize the plugin (optional, but good practice)
+ts.setup()
 
-    -- List of parsers to ignore installing (or "all")
-    ignore_install = {},
+-- List of parsers to ensure are installed
+local parsers = {
+    "scss", "css", "lua", "php", "blade", "typescript", "javascript",
+    "c", "vue", "java", "cpp", "html", "rust", "markdown", "markdown_inline"
+}
 
-    ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-    -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+-- Asynchronously install the requested parsers (this is a no-op if they are already installed)
+ts.install(parsers)
 
-    highlight = {
-        enable = true,
-
-        -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-        -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-        -- the name of the parser)
-        -- list of language that will be disabled
-        disable = {},
-        -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-        disable = function(lang, buf)
-            local max_filesize = 100 * 1024 -- 100 KB
-            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-            if ok and stats and stats.size > max_filesize then
-                return true
-            end
-        end,
-
-        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-        -- Using this option may slow down your editor, and you may see some duplicate highlights.
-        -- Instead of true it can also be a list of languages
-        additional_vim_regex_highlighting = false,
-    },
-})
-
--- update Ts on vim.pack.update()
+-- Handle automatic parser updates when the plugin itself is updated via pack-manager
 vim.api.nvim_create_autocmd('PackChanged', {
     desc = 'Handle nvim-treesitter updates',
     group = vim.api.nvim_create_augroup('nvim-treesitter-pack-changed-update-handler', { clear = true }),
     callback = function(event)
         if event.data.kind == 'update' and event.data.spec.name == 'nvim-treesitter' then
             vim.notify('nvim-treesitter updated, running TSUpdate...', vim.log.levels.INFO)
-            ---@diagnostic disable-next-line: param-type-mismatch
             local ok = pcall(vim.cmd, 'TSUpdate')
             if ok then
                 vim.notify('TSUpdate completed successfully!', vim.log.levels.INFO)
             else
-                vim.notify('TSUpdate command not available yet, skipping', vim.log.levels.WARN)
+                vim.notify('TSUpdate command failed or missing, skipping', vim.log.levels.WARN)
             end
         end
     end,
