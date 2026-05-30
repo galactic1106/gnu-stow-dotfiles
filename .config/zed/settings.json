@@ -7,6 +7,9 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "collaboration_panel": {
+    "dock": "left"
+  },
   "git_panel": {
     "dock": "right",
   },
@@ -55,15 +58,16 @@
     "mode": "subtle",
   },
   "agent": {
+    "dock": "right",
     "tool_permissions": {
       "default": "confirm",
     },
     "default_profile": "write",
     "default_model": {
       "effort": "medium",
-      "enable_thinking": false,
+      "enable_thinking": true,
       "provider": "copilot_chat",
-      "model": "gemini-3.1-pro-preview",
+      "model": "gpt-5.2-codex",
     },
     "model_parameters": [],
   },

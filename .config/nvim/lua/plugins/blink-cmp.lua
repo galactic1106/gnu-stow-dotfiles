@@ -1,12 +1,23 @@
-vim.pack.add({ { src = 'https://github.com/Saghen/blink.cmp', name = "blink" } })
+vim.pack.add({
+    { src = 'https://github.com/Saghen/blink.lib', name = 'blink.lib' },
+    { src = 'https://github.com/Saghen/blink.cmp', name = 'blink' }
+})
 
 vim.g.blink_cmp_auto_show = true
 
-require("blink.cmp").setup({
+local ok, blink = pcall(require, "blink.cmp")
+if not ok then
+    vim.schedule(function()
+        vim.notify("blink.cmp failed to load: " .. tostring(blink), vim.log.levels.ERROR)
+    end)
+    return
+end
+
+blink.setup({
     keymap = {
         preset = 'default',
         ['<CR>'] = { 'accept', 'fallback' },
-        ['<C><leader>'] = { "show" },
+        ['<C-Space>'] = { "show" },
         ['<A-1>'] = { function(cmp) cmp.accept({ index = 1 }) end },
         ['<A-2>'] = { function(cmp) cmp.accept({ index = 2 }) end },
         ['<A-3>'] = { function(cmp) cmp.accept({ index = 3 }) end },
@@ -50,10 +61,6 @@ require("blink.cmp").setup({
     },
     fuzzy = {
         implementation = "prefer_rust",
-        prebuilt_binaries = {
-            download = false,
-            force_version = "1.*"
-        }
     },
     -- Experimental signature help support
     signature = {

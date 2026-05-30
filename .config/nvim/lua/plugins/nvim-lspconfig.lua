@@ -9,10 +9,7 @@ local servers = {
         settings = {
             ["rust-analyzer"] = {
                 cargo = { allFeatures = false },
-                checkOnSave = {
-                    command = "clippy",
-                    extraArgs = { "--no-deps" },
-                },
+                check = { command = "clippy" },
             }
         }
     },

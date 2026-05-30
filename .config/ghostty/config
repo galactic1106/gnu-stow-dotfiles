@@ -1,32 +1,43 @@
-font-family="Hack Nerd Font Mono"
+font-family = "Hack Nerd Font"
 
 # theme = Neon
 # theme = Sugarplum
 # theme = tokyonight_night
 theme = coolnight
 
-cursor-style = underline 
-cursor-style-blink = true 
+cursor-style = underline
+cursor-style-blink = true
 shell-integration-features = no-cursor
 mouse-hide-while-typing = true
 
-background-opacity=0.85
+background-opacity = 0.9
+background-blur = true
+window-padding-x = 5
+window-padding-y = 0
+term = xterm-256color
 
 keybind = ctrl+s>s=new_split:down
 keybind = ctrl+s>w=new_split:up
 keybind = ctrl+s>d=new_split:right
 keybind = ctrl+s>a=new_split:left
 
-
 keybind = ctrl+s>down=goto_split:down
 keybind = ctrl+s>up=goto_split:up
 keybind = ctrl+s>right=goto_split:right
 keybind = ctrl+s>left=goto_split:left
+keybind = ctrl+s>n=goto_split:next
+keybind = ctrl+s>p=goto_split:previous
 
 keybind = ctrl+s>j=goto_split:down
 keybind = ctrl+s>k=goto_split:up
 keybind = ctrl+s>l=goto_split:right
 keybind = ctrl+s>h=goto_split:left
+keybind = ctrl+s>z=toggle_split_zoom
+keybind = ctrl+s>=equalize_splits
+keybind = ctrl+s>H=resize_split:left,10
+keybind = ctrl+s>J=resize_split:down,10
+keybind = ctrl+s>K=resize_split:up,10
+keybind = ctrl+s>L=resize_split:right,10
 
 keybind = ctrl+s>x=close_surface
 

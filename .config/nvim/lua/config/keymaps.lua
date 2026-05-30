@@ -4,7 +4,15 @@ vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>', { silent = true, desc = 'Clear s
 
 -- View messages and errors
 vim.keymap.set('n', '<leader>m', ':messages<CR>', { desc = 'Show Messages/Errors' })
-vim.keymap.set('n', '<leader>un', function() Snacks.notifier.show_history() end, { desc = 'Notification History' })
+vim.keymap.set('n', '<leader>un', ':Telescope notify<CR>', { desc = 'Notification History' })
+
+-- Test notifications
+vim.api.nvim_create_user_command('TestNotify', function()
+    vim.notify('This is an info notification!', vim.log.levels.INFO)
+    vim.notify('This is a warning notification!', vim.log.levels.WARN)
+    vim.notify('This is an error notification!', vim.log.levels.ERROR)
+end, { desc = 'Test notifications' })
+vim.keymap.set('n', '<leader>tn', ':TestNotify<CR>', { desc = 'Test Notifications' })
 
 -- Quick save / quit (Uncomment to enable)
 -- vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Save file' })
