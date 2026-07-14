@@ -4,7 +4,7 @@ vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>', { silent = true, desc = 'Clear s
 
 -- View messages and errors
 vim.keymap.set('n', '<leader>m', ':messages<CR>', { desc = 'Show Messages/Errors' })
-vim.keymap.set('n', '<leader>un', ':Telescope notify<CR>', { desc = 'Notification History' })
+vim.keymap.set('n', '<leader>un', function() Snacks.notifier.show_history() end, { desc = 'Notification History' })
 
 -- Test notifications
 vim.api.nvim_create_user_command('TestNotify', function()
@@ -67,7 +67,14 @@ Snacks.toggle({
     set = function(state) vim.g.blink_cmp_auto_show = state end,
 }):map("<leader>ub")
 
--- LSP & Diagnostics
+-- LSP & Diagnostics (v0.12 style)
+vim.keymap.set('n', '<leader>li', ':lsp info<CR>', { desc = 'LSP Info' })
+vim.keymap.set('n', '<leader>lR', ':lsp restart<CR>', { desc = 'LSP Restart' })
+vim.keymap.set('n', '<leader>ll', ':lsp log<CR>', { desc = 'LSP Log' })
+
+-- Restart Neovim
+vim.keymap.set('n', '<leader>rR', ':restart<CR>', { desc = 'Restart Neovim' })
+
 Snacks.keymap.set('n', 'gd', vim.lsp.buf.definition,
     { lsp = { method = "textDocument/definition" }, desc = 'Go to Definition' })
 Snacks.keymap.set('n', 'gD', vim.lsp.buf.declaration,
@@ -152,6 +159,12 @@ vim.keymap.set('n', '<leader>tt', ':Neotree toggle<cr>', { desc = 'Toggle NeoTre
 -- Tools & Frameworks
 -- Terminal
 vim.keymap.set({ "n", "t" }, "<C-/>", function() Snacks.terminal.toggle() end, { desc = "Toggle Terminal" })
+
+-- Dadbod
+vim.keymap.set("n", "<leader>db", ":DBUIToggle<CR>", { desc = "Dadbod UI" })
+vim.keymap.set("n", "<leader>df", ":DBUIFindBuffer<CR>", { desc = "Dadbod Find Buffer" })
+vim.keymap.set("n", "<leader>dr", ":DBUIRenameBuffer<CR>", { desc = "Dadbod Rename Buffer" })
+vim.keymap.set("n", "<leader>dl", ":DBUILastQueryInfo<CR>", { desc = "Dadbod Last Query Info" })
 
 -- Laravel
 Snacks.keymap.set("n", "<leader>la", ":Artisan<cr>", { ft = { "php", "blade" }, desc = "Laravel Artisan" })

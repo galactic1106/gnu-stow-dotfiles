@@ -45,6 +45,9 @@ require("which-key").add({
     { "<leader>w",  group = "Window/Save",                          proxy = "<C-w>" },
     { "<leader>m",  desc = "Show Messages/Errors" },
 
+    { "<leader>r",  group = "System" },
+    { "<leader>rR", desc = "Restart Neovim" },
+
     -- Find/Telescope mappings
     { "<leader>ff", desc = "Find Files" },
     { "<leader>fg", desc = "Live Grep" },
@@ -60,6 +63,9 @@ require("which-key").add({
     { "<leader>fG", desc = "Live Grep (Hidden+Ignored)" },
 
     -- LSP mappings
+    { "<leader>li", desc = "LSP Info" },
+    { "<leader>lR", desc = "LSP Restart" },
+    { "<leader>ll", desc = "LSP Log" },
     { "<leader>lf", desc = "Format Buffer" },
 
     -- Laravel mappings
@@ -147,6 +153,7 @@ require("which-key").add({
     { "<leader>un", desc = "Notification History" },
     { "<leader>ub", desc = "Toggle Blink Auto Show" },
     { "<leader>ud", desc = "Toggle Inline Diagnostics" },
+    { "<leader>ut", desc = "Toggle UndoTree" },
 
     -- Window/File operations
 
@@ -179,5 +186,6 @@ require("which-key").add({
 
     -- Diagnostic mappings
     { "gl",         desc = "Line Diagnostics (Floating)" },
-    { "<leader>d",  group = "Diagnostics" },
+    { "<leader>d",  group = "Diagnostics/Diff" },
+    { "<leader>dt", desc = "Toggle DiffTool" },
 })

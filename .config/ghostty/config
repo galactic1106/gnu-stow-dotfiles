@@ -7,6 +7,7 @@ theme = coolnight
 
 cursor-style = underline
 cursor-style-blink = true
+adjust-cursor-thickness = 3
 shell-integration-features = no-cursor
 mouse-hide-while-typing = true
 
@@ -33,11 +34,11 @@ keybind = ctrl+s>k=goto_split:up
 keybind = ctrl+s>l=goto_split:right
 keybind = ctrl+s>h=goto_split:left
 keybind = ctrl+s>z=toggle_split_zoom
-keybind = ctrl+s>=equalize_splits
-keybind = ctrl+s>H=resize_split:left,10
-keybind = ctrl+s>J=resize_split:down,10
-keybind = ctrl+s>K=resize_split:up,10
-keybind = ctrl+s>L=resize_split:right,10
+keybind = ctrl+s>e=equalize_splits
+keybind = ctrl+s>shift+h=resize_split:left,10
+keybind = ctrl+s>shift+j=resize_split:down,10
+keybind = ctrl+s>shift+k=resize_split:up,10
+keybind = ctrl+s>shift+l=resize_split:right,10
 
 keybind = ctrl+s>x=close_surface
 

@@ -3,7 +3,11 @@ vim.pack.add({ { src = "https://github.com/folke/snacks.nvim", name = "snacks.nv
 require("snacks").setup({
     -- You can enable and configure various snacks.nvim modules here.
     bigfile = { enabled = true },
-    notifier = { enabled = true },
+    notifier = {
+        enabled = true,
+        timeout = 3000,
+        style = "compact", -- or "rounded"
+    },
     quickfile = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },

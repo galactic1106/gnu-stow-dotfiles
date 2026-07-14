@@ -10,6 +10,28 @@ vim.pack.add({
 })
 
 require("neo-tree").setup({
+    default_component_configs = {
+        icon = {
+            folder_closed = "",
+            folder_open = "",
+            folder_empty = "",
+            default = "*",
+            highlight = "NeoTreeFileIcon"
+        },
+        git_status = {
+            symbols = {
+                added     = "✚",
+                modified  = "",
+                deleted   = "✖",
+                renamed   = "󰁕",
+                untracked = "",
+                ignored   = "",
+                unstaged  = "󰄱",
+                staged    = "",
+                conflict  = "",
+            }
+        },
+    },
     sources = {
         "filesystem",
         "buffers",

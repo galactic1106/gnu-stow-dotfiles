@@ -1,0 +1,11 @@
+onboarding = false
+[theme]
+name = "terminal"
+auto_switch = false
+
+
+[keys]
+prefix= "ctrl+a"
+
+[advanced]
+scrollback_limit_bytes = 10485760

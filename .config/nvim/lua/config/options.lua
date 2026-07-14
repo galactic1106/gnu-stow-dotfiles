@@ -82,3 +82,14 @@ vim.opt.termguicolors = true
 
 -- Clipboard integration with system clipboard
 vim.opt.clipboard = 'unnamedplus'
+
+-- Filetype detection for Angie (treat as nginx)
+vim.filetype.add({
+    extension = {
+        angie = 'nginx',
+    },
+    pattern = {
+        ['.*angie%.conf'] = 'nginx',
+        ['.*/angie/.*%.conf'] = 'nginx',
+    },
+})

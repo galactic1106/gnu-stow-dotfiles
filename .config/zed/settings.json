@@ -64,7 +64,7 @@
     },
     "default_profile": "write",
     "default_model": {
-      "effort": "medium",
+      "effort": "low",
       "enable_thinking": true,
       "provider": "copilot_chat",
       "model": "gpt-5.2-codex",
