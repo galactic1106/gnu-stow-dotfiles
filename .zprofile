@@ -47,7 +47,7 @@ export FFMPEG_DATADIR="$XDG_CONFIG_HOME/ffmpeg"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export DATE=$(date "+%A, %B %e  %_I:%M%P")
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
-
+export npm_config_prefix="$HOME/.local"
 
 # man highlighting
 export MANPAGER="less -R --use-color -Dd+r -Du+b" # colored man pages
@@ -69,7 +69,7 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 
 
 # Created by `pipx` on 2024-11-04 22:41:35
-export PATH="$PATH:/home/galactic1106/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 # add composer binaries to path
 export PATH=$PATH:~/.config/composer/vendor/bin
 
