@@ -1,6 +1,8 @@
 vim.pack.add({
-  src = 'https://github.com/Redoxahmii/json-to-types.nvim',
-  name = 'json-to-types.nvim',
+  {
+    src = 'https://github.com/Redoxahmii/json-to-types.nvim',
+    name = 'json-to-types',
+  }
 })
 
 local plugin_dir = vim.fn.stdpath("data") .. "/site/pack/core/opt/json-to-types.nvim"
@@ -20,5 +22,3 @@ if vim.fn.isdirectory(plugin_dir) == 1 and vim.fn.isdirectory(node_modules_dir) 
     end
   })
 end
-
-
