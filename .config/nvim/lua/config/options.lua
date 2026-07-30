@@ -93,3 +93,4 @@ vim.filetype.add({
         ['.*/angie/.*%.conf'] = 'nginx',
     },
 })
+

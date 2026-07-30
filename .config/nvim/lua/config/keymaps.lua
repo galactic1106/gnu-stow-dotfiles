@@ -8,16 +8,11 @@ vim.keymap.set('n', '<leader>un', function() Snacks.notifier.show_history() end,
 
 -- Test notifications
 vim.api.nvim_create_user_command('TestNotify', function()
-    vim.notify('This is an info notification!', vim.log.levels.INFO)
-    vim.notify('This is a warning notification!', vim.log.levels.WARN)
-    vim.notify('This is an error notification!', vim.log.levels.ERROR)
+  vim.notify('This is an info notification!', vim.log.levels.INFO)
+  vim.notify('This is a warning notification!', vim.log.levels.WARN)
+  vim.notify('This is an error notification!', vim.log.levels.ERROR)
 end, { desc = 'Test notifications' })
 vim.keymap.set('n', '<leader>tn', ':TestNotify<CR>', { desc = 'Test Notifications' })
-
--- Quick save / quit (Uncomment to enable)
--- vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Save file' })
--- vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Quit' })
--- vim.keymap.set('n', '<leader>Q', ':qa<CR>', { desc = 'Quit all' })
 
 -- Window & Buffer Management
 -- Window splits
@@ -40,13 +35,6 @@ vim.keymap.set('n', ']q', ':cnext<CR>', { desc = 'Next quickfix' })
 vim.keymap.set('n', '[l', ':lprev<CR>', { desc = 'Previous location' })
 vim.keymap.set('n', ']l', ':lnext<CR>', { desc = 'Next location' })
 
--- Better terminal navigation (Uncomment to enable)
--- vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
--- vim.keymap.set('t', '<C-h>', '<Cmd>wincmd h<CR>', { desc = 'Terminal navigate left' })
--- vim.keymap.set('t', '<C-j>', '<Cmd>wincmd j<CR>', { desc = 'Terminal navigate down' })
--- vim.keymap.set('t', '<C-k>', '<Cmd>wincmd k<CR>', { desc = 'Terminal navigate up' })
--- vim.keymap.set('t', '<C-l>', '<Cmd>wincmd l<CR>', { desc = 'Terminal navigate right' })
-
 -- Text Editing & Movement
 -- Move lines up and down
 vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', { desc = 'Move line down' })
@@ -59,12 +47,12 @@ Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
 
 -- Toggle tiny-inline-diagnostic
 vim.keymap.set('n', '<leader>ud', function() require("tiny-inline-diagnostic").toggle() end,
-    { desc = 'Toggle Inline Diagnostics' })
+  { desc = 'Toggle Inline Diagnostics' })
 
 Snacks.toggle({
-    name = "Blink Auto Show",
-    get = function() return vim.g.blink_cmp_auto_show end,
-    set = function(state) vim.g.blink_cmp_auto_show = state end,
+  name = "Blink Auto Show",
+  get = function() return vim.g.blink_cmp_auto_show end,
+  set = function(state) vim.g.blink_cmp_auto_show = state end,
 }):map("<leader>ub")
 
 -- LSP & Diagnostics (v0.12 style)
@@ -75,46 +63,59 @@ vim.keymap.set('n', '<leader>ll', ':lsp log<CR>', { desc = 'LSP Log' })
 -- Restart Neovim
 vim.keymap.set('n', '<leader>rR', ':restart<CR>', { desc = 'Restart Neovim' })
 
+-- -----------------------------------------------------------------------------
+-- LSP Keymaps (Leveraging Snacks' LSP filter)
+-- -----------------------------------------------------------------------------
 Snacks.keymap.set('n', 'gd', vim.lsp.buf.definition,
-    { lsp = { method = "textDocument/definition" }, desc = 'Go to Definition' })
+  { lsp = { method = "textDocument/definition" }, desc = 'Go to Definition' })
+
 Snacks.keymap.set('n', 'gD', vim.lsp.buf.declaration,
-    { lsp = { method = "textDocument/declaration" }, desc = 'Go to Declaration' })
+  { lsp = { method = "textDocument/declaration" }, desc = 'Go to Declaration' })
+
 Snacks.keymap.set('n', 'gr', vim.lsp.buf.references,
-    { lsp = { method = "textDocument/references" }, desc = 'Find References' })
+  { lsp = { method = "textDocument/references" }, desc = 'Find References' })
+
 Snacks.keymap.set('n', 'gi', vim.lsp.buf.implementation,
-    { lsp = { method = "textDocument/implementation" }, desc = 'Go to Implementation' })
+  { lsp = { method = "textDocument/implementation" }, desc = 'Go to Implementation' })
+
 Snacks.keymap.set('n', 'gt', vim.lsp.buf.type_definition,
-    { lsp = { method = "textDocument/typeDefinition" }, desc = 'Go to Type Definition' })
-Snacks.keymap.set('n', 'K', vim.lsp.buf.hover, { lsp = { method = "textDocument/hover" }, desc = 'Hover Documentation' })
+  { lsp = { method = "textDocument/typeDefinition" }, desc = 'Go to Type Definition' })
+
+Snacks.keymap.set('n', 'K', vim.lsp.buf.hover,
+  { lsp = { method = "textDocument/hover" }, desc = 'Hover Documentation' })
+
 Snacks.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help,
-    { lsp = { method = "textDocument/signatureHelp" }, desc = 'Signature Help' })
-Snacks.keymap.set('n', 'grn', vim.lsp.buf.rename, { lsp = { method = "textDocument/rename" }, desc = 'Rename Symbol' })
+  { lsp = { method = "textDocument/signatureHelp" }, desc = 'Signature Help' })
+
+Snacks.keymap.set('n', 'grn', vim.lsp.buf.rename,
+  { lsp = { method = "textDocument/rename" }, desc = 'Rename Symbol' })
+
 Snacks.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action,
-    { lsp = { method = "textDocument/codeAction" }, desc = 'Code Actions' })
+  { lsp = { method = "textDocument/codeAction" }, desc = 'Code Actions' })
 
 Snacks.keymap.set('n', '<leader>lf', function()
-    require("conform").format({ async = true, lsp_fallback = true })
+  require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = 'Format Buffer' })
 
 vim.keymap.set('n', 'gl', function()
-    vim.diagnostic.open_float({
-        border = 'rounded',
-        source = 'always',
-        scope = 'line',
-        focus = false,
-        header = '',
-        prefix = function(diagnostic, i, total)
-            local signs_map = {
-                [vim.diagnostic.severity.ERROR] = '󰅚 ',
-                [vim.diagnostic.severity.WARN] = '󰀪 ',
-                [vim.diagnostic.severity.HINT] = '󰌶 ',
-                [vim.diagnostic.severity.INFO] = '󰋽 ',
-            }
-            local icon = signs_map[diagnostic.severity] or ' '
-            local prefix_text = string.format("%d/%d ", i, total)
-            return prefix_text .. icon, 'DiagnosticSign' .. vim.diagnostic.severity[diagnostic.severity]
-        end,
-    })
+  vim.diagnostic.open_float({
+    border = 'rounded',
+    source = true,
+    scope = 'line',
+    focus = false,
+    header = '',
+    prefix = function(diagnostic, i, total)
+      local signs_map = {
+        [vim.diagnostic.severity.ERROR] = '󰅚 ',
+        [vim.diagnostic.severity.WARN] = '󰀪 ',
+        [vim.diagnostic.severity.HINT] = '󰌶 ',
+        [vim.diagnostic.severity.INFO] = '󰋽 ',
+      }
+      local icon = signs_map[diagnostic.severity] or ' '
+      local prefix_text = string.format("%d/%d ", i, total)
+      return prefix_text .. icon, 'DiagnosticSign' .. vim.diagnostic.severity[diagnostic.severity]
+    end,
+  })
 end, { desc = 'Line Diagnostics (Floating)' })
 
 -- Finding & Navigation (Telescope)
@@ -130,19 +131,19 @@ vim.keymap.set('n', '<leader>fr', ':Telescope resume<cr>', { desc = 'Resume Last
 vim.keymap.set('n', '<leader>fs', ':Telescope lsp_document_symbols<cr>', { desc = 'Document Symbols' })
 
 vim.keymap.set('n', '<leader>fF', function()
-    require('telescope.builtin').find_files({
-        find_command = { 'fd', '--type', 'f', '--hidden', '--no-ignore', '--strip-cwd-prefix' },
-        prompt_title = 'Find Files (Hidden + No Ignore)',
-    })
+  require('telescope.builtin').find_files({
+    find_command = { 'fd', '--type', 'f', '--hidden', '--no-ignore', '--strip-cwd-prefix' },
+    prompt_title = 'Find Files (Hidden + No Ignore)',
+  })
 end, { desc = 'Find Files (Include Hidden/Ignored)' })
 
 vim.keymap.set('n', '<leader>fG', function()
-    require('telescope.builtin').live_grep({
-        additional_args = function()
-            return { "--hidden", "--no-ignore" }
-        end,
-        prompt_title = 'Live Grep (Hidden + No Ignore)',
-    })
+  require('telescope.builtin').live_grep({
+    additional_args = function()
+      return { "--hidden", "--no-ignore" }
+    end,
+    prompt_title = 'Live Grep (Hidden + No Ignore)',
+  })
 end, { desc = 'Live Grep (Include Hidden/Ignored)' })
 
 -- File Explorers
@@ -166,8 +167,50 @@ vim.keymap.set("n", "<leader>df", ":DBUIFindBuffer<CR>", { desc = "Dadbod Find B
 vim.keymap.set("n", "<leader>dr", ":DBUIRenameBuffer<CR>", { desc = "Dadbod Rename Buffer" })
 vim.keymap.set("n", "<leader>dl", ":DBUILastQueryInfo<CR>", { desc = "Dadbod Last Query Info" })
 
--- Laravel
+-- -----------------------------------------------------------------------------
+-- Laravel Keymaps (Leveraging Snacks' ft filter)
+-- -----------------------------------------------------------------------------
 Snacks.keymap.set("n", "<leader>la", ":Artisan<cr>", { ft = { "php", "blade" }, desc = "Laravel Artisan" })
 Snacks.keymap.set("n", "<leader>lc", ":Composer<cr>", { ft = { "php", "blade" }, desc = "Composer" })
 Snacks.keymap.set("n", "<leader>lr", ":LaravelRoute<cr>", { ft = { "php", "blade" }, desc = "Laravel Routes" })
 Snacks.keymap.set("n", "<leader>lm", ":LaravelMake<cr>", { ft = { "php", "blade" }, desc = "Laravel Make" })
+
+-- -----------------------------------------------------------------------------
+-- JSON to Types (json-to-types.nvim) - Restricted to JSON files
+-- -----------------------------------------------------------------------------
+
+-- Go (<leader>cg / <leader>cG)
+Snacks.keymap.set('n', '<leader>cg', '<CMD>ConvertJSONtoLang go<CR>',
+  { ft = "json", desc = 'Convert JSON to Go (New File)' })
+Snacks.keymap.set('n', '<leader>cG', '<CMD>ConvertJSONtoLangBuffer go<CR>',
+  { ft = "json", desc = 'Convert JSON to Go (Buffer)' })
+
+-- Rust (<leader>cr / <leader>cR)
+Snacks.keymap.set('n', '<leader>cr', '<CMD>ConvertJSONtoLang rust<CR>',
+  { ft = "json", desc = 'Convert JSON to Rust (New File)' })
+Snacks.keymap.set('n', '<leader>cR', '<CMD>ConvertJSONtoLangBuffer rust<CR>',
+  { ft = "json", desc = 'Convert JSON to Rust (Buffer)' })
+
+-- TypeScript (<leader>ct / <leader>cT)
+Snacks.keymap.set('n', '<leader>ct', '<CMD>ConvertJSONtoLang typescript<CR>',
+  { ft = "json", desc = 'Convert JSON to TypeScript (New File)' })
+Snacks.keymap.set('n', '<leader>cT', '<CMD>ConvertJSONtoLangBuffer typescript<CR>',
+  { ft = "json", desc = 'Convert JSON to TypeScript (Buffer)' })
+
+-- JavaScript (<leader>cj / <leader>cJ)
+Snacks.keymap.set('n', '<leader>cj', '<CMD>ConvertJSONtoLang javascript<CR>',
+  { ft = "json", desc = 'Convert JSON to JavaScript (New File)' })
+Snacks.keymap.set('n', '<leader>cJ', '<CMD>ConvertJSONtoLangBuffer javascript<CR>',
+  { ft = "json", desc = 'Convert JSON to JavaScript (Buffer)' })
+
+-- Python (<leader>cp / <leader>cP)
+Snacks.keymap.set('n', '<leader>cp', '<CMD>ConvertJSONtoLang python<CR>',
+  { ft = "json", desc = 'Convert JSON to Python (New File)' })
+Snacks.keymap.set('n', '<leader>cP', '<CMD>ConvertJSONtoLangBuffer python<CR>',
+  { ft = "json", desc = 'Convert JSON to Python (Buffer)' })
+
+-- PHP (<leader>ch / <leader>cH)
+Snacks.keymap.set('n', '<leader>ch', '<CMD>ConvertJSONtoLang php<CR>',
+  { ft = "json", desc = 'Convert JSON to PHP (New File)' })
+Snacks.keymap.set('n', '<leader>cH', '<CMD>ConvertJSONtoLangBuffer php<CR>',
+  { ft = "json", desc = 'Convert JSON to PHP (Buffer)' })

@@ -8,7 +8,6 @@ local servers = {
   rust_analyzer = {
     settings = {
       ["rust-analyzer"] = {
-        cargo = { allFeatures = false },
         check = { command = "clippy" },
       }
     }
@@ -46,14 +45,17 @@ local servers = {
   nginx_language_server = {},
   jedi_language_server = {
     init_options = {
-      -- Instructs Jedi to trace more deeply into complex packages
-      workspace = {
-        extraPaths = {},
-        maxSymbols = 40,
-      },
-      markupKind = "markdown", -- Ensures Neovim renders code blocks inside docstrings nicely
-    }
-  },
+      markupKindPreferred = "markdown",
+    },
+    settings = {
+      jediSettings = {
+        autoImportModules = { "pwn" },
+        caseInsensitiveCompletion = true,
+      }
+    },
+    dockerls = {},
+    docker_compose_language_service = {},
+  }
 }
 
 -- Loop through the servers and set them up
