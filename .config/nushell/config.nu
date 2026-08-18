@@ -21,7 +21,7 @@ $env.config = {
     }
 
     rm: {
-        always_trash: false # always act as if -t was given. Can be overridden with -p
+        always_trash: true # always act as if -t was given. Can be overridden with -p
     }
 
     table: {
@@ -146,7 +146,7 @@ $env.config = {
     }
 
     hooks: {
-        pre_prompt: [{|| 
+        pre_prompt: [{||
             if (which direnv | is-empty) {
                 return
             }
@@ -788,18 +788,18 @@ alias gr = git remote
 alias gre = git reset
 
 # K8s
-alias k = kubectl
-alias ka = kubectl apply -f
-alias kg = kubectl get
-alias kd = kubectl describe
-alias kdel = kubectl delete
-alias kl = kubectl logs
-alias kgpo = kubectl get pod
-alias kgd = kubectl get deployments
-alias kc = kubectx
-alias kns = kubens
-alias kl = kubectl logs -f
-alias ke = kubectl exec -it
+# alias k = kubectl
+# alias ka = kubectl apply -f
+# alias kg = kubectl get
+# alias kd = kubectl describe
+# alias kdel = kubectl delete
+# alias kl = kubectl logs
+# alias kgpo = kubectl get pod
+# alias kgd = kubectl get deployments
+# alias kc = kubectx
+# alias kns = kubens
+# alias kl = kubectl logs -f
+# alias ke = kubectl exec -it
 
 
 alias vi = nvim
@@ -808,9 +808,7 @@ alias mysql = mariadb
 
 source ~/.config/nushell/env.nu
 source ~/.zoxide.nu
-# source $"($nu.cache-dir)/carapace.nu"
 source ~/.local/share/atuin/init.nu
 
 use ~/.cache/starship/init.nu
 
-# source ($nu.default-config-dir | path join "vendor/autoload/carapace.nu")
