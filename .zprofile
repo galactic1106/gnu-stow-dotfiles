@@ -72,6 +72,8 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 export PATH="$PATH:$HOME/.local/bin"
 # add composer binaries to path
 export PATH=$PATH:~/.config/composer/vendor/bin
+# add cargo binaries to path
+export PATH=$PATH:~/.local/share/cargo/bin/
 
 export GODOT4_BIN='/usr/bin/godot'
 
