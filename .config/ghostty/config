@@ -17,29 +17,29 @@ window-padding-x = 5
 window-padding-y = 0
 term = xterm-256color
 
-keybind = ctrl+s>s=new_split:down
-keybind = ctrl+s>w=new_split:up
-keybind = ctrl+s>d=new_split:right
-keybind = ctrl+s>a=new_split:left
-
-keybind = ctrl+s>down=goto_split:down
-keybind = ctrl+s>up=goto_split:up
-keybind = ctrl+s>right=goto_split:right
-keybind = ctrl+s>left=goto_split:left
-keybind = ctrl+s>n=goto_split:next
-keybind = ctrl+s>p=goto_split:previous
-
-keybind = ctrl+s>j=goto_split:down
-keybind = ctrl+s>k=goto_split:up
-keybind = ctrl+s>l=goto_split:right
-keybind = ctrl+s>h=goto_split:left
-keybind = ctrl+s>z=toggle_split_zoom
-keybind = ctrl+s>e=equalize_splits
-keybind = ctrl+s>shift+h=resize_split:left,10
-keybind = ctrl+s>shift+j=resize_split:down,10
-keybind = ctrl+s>shift+k=resize_split:up,10
-keybind = ctrl+s>shift+l=resize_split:right,10
-
-keybind = ctrl+s>x=close_surface
-
-keybind = ctrl+backspace=text:\x1b\x7f
+# keybind = ctrl+s>s=new_split:down
+# keybind = ctrl+s>w=new_split:up
+# keybind = ctrl+s>d=new_split:right
+# keybind = ctrl+s>a=new_split:left
+#
+# keybind = ctrl+s>down=goto_split:down
+# keybind = ctrl+s>up=goto_split:up
+# keybind = ctrl+s>right=goto_split:right
+# keybind = ctrl+s>left=goto_split:left
+# keybind = ctrl+s>n=goto_split:next
+# keybind = ctrl+s>p=goto_split:previous
+#
+# keybind = ctrl+s>j=goto_split:down
+# keybind = ctrl+s>k=goto_split:up
+# keybind = ctrl+s>l=goto_split:right
+# keybind = ctrl+s>h=goto_split:left
+# keybind = ctrl+s>z=toggle_split_zoom
+# keybind = ctrl+s>e=equalize_splits
+# keybind = ctrl+s>shift+h=resize_split:left,10
+# keybind = ctrl+s>shift+j=resize_split:down,10
+# keybind = ctrl+s>shift+k=resize_split:up,10
+# keybind = ctrl+s>shift+l=resize_split:right,10
+#
+# keybind = ctrl+s>x=close_surface
+#
+# keybind = ctrl+backspace=text:\x1b\x7f
