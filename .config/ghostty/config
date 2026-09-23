@@ -1,9 +1,9 @@
 font-family = "Hack Nerd Font"
 
+theme= Coolnight
 # theme = Neon
 # theme = Sugarplum
 # theme = tokyonight_night
-theme = coolnight
 
 cursor-style = underline
 cursor-style-blink = true
