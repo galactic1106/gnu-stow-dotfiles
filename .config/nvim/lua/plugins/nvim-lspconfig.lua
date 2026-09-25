@@ -52,9 +52,15 @@ local servers = {
         autoImportModules = { "pwn" },
         caseInsensitiveCompletion = true,
       }
-    },
-    dockerls = {},
-    docker_compose_language_service = {},
+    }
+  },
+  dockerls = {},
+  docker_compose_language_service = {},
+  lunte = {
+    cmd = { 'npx', '--yes', 'lunte-lsp' },
+    filetypes = { 'javascript', 'javascriptreact', 'javascript.mjs' },
+    root_markers = { 'package.json', 'tsconfig.json', 'jsconfig.json', '.git' },
+    single_file_support = true,
   }
 }
 
