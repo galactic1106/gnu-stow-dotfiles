@@ -11,6 +11,7 @@ blink.build():pwait()
 blink.setup({
   keymap = {
     preset = 'default',
+    ['<C-l>'] = { 'accept', 'fallback' },
     ['<A-1>'] = { function(cmp) cmp.accept({ index = 1 }) end },
     ['<A-2>'] = { function(cmp) cmp.accept({ index = 2 }) end },
     ['<A-3>'] = { function(cmp) cmp.accept({ index = 3 }) end },
